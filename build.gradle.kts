@@ -14,6 +14,7 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
     implementation("org.java-gi:gtk:1.0.0-RC3")
+    implementation("com.h2database:h2:1.4.197")
 }
 
 tasks.test {

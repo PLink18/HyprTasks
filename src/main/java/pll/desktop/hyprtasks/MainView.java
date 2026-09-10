@@ -8,7 +8,7 @@ public class MainView {
 
     final String APP_NAME = "pll.desktop.hyprtasks";
 
-    public static void main(String[] args) {
+    static void main(String[] args) {
         new MainView(args);
     }
 
@@ -29,14 +29,7 @@ public class MainView {
         Window window = (Window) builder.getObject("window");
         window.setApplication(app);
 
-        Button button = (Button) builder.getObject("button1");
-        button.onClicked(MainView::printHello);
-
-        button = (Button) builder.getObject("button2");
-        button.onClicked(MainView::printHello);
-
-        button = (Button) builder.getObject("quit");
-        button.onClicked(window::destroy);
+        Overlay overlay = (Overlay) builder.getObject("overlay");
 
         window.setVisible(true);
     }
