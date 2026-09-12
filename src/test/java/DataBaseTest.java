@@ -23,34 +23,34 @@ public class DataBaseTest {
     @Test
     public void testInsertRecords() {
         Task task = new Task(0, "Test task", "Task for test");
-        DatabaseTable databaseTable = new DatabaseTable();
-        int startRecordsCount = databaseTable.readAllRecords("tasks").size();
-        databaseTable.insertRecords("tasks", task.getTitle(), task.getDescription());
-        assertEquals(startRecordsCount+1, databaseTable.readAllRecords("tasks").size());
+        DatabaseTable databaseTable = DatabaseTable.tasks();
+        int startRecordsCount = databaseTable.readAllRecords("Tasks").size();
+        databaseTable.insertRecords("Tasks", task.getTitle(), task.getDescription());
+        assertEquals(startRecordsCount+1, databaseTable.readAllRecords("Tasks").size());
     }
 
     @Test
     public void testReadAllRecords() {
-        DatabaseTable databaseTable = new DatabaseTable();
-        assertNotNull(databaseTable.readAllRecords("tasks"));
+        DatabaseTable databaseTable = DatabaseTable.tasks();
+        assertNotNull(databaseTable.readAllRecords("Tasks"));
     }
 
     @Test
     public void testUpdateRecord() {
-        DatabaseTable databaseTable = new DatabaseTable();
-        databaseTable.insertRecords("tasks", "UPDATE", "Task for update");
-        int id = databaseTable.readAllRecords("tasks").size();
+        DatabaseTable databaseTable = DatabaseTable.tasks();
+        databaseTable.insertRecords("Tasks", "UPDATE", "Task for update");
+        int id = databaseTable.readAllRecords("Tasks").size();
         Task task = new Task(id, "UPDATE", "This is updated task");
         assertTrue(databaseTable.updateRecord(task));
     }
 
     @Test
     public void testDeleteById() {
-        DatabaseTable databaseTable = new DatabaseTable();
+        DatabaseTable databaseTable = DatabaseTable.tasks();
 
-        databaseTable.insertRecords("tasks", "DELETE", "Task for delete");
-        int id = databaseTable.readAllRecords("tasks").size();
-        assertTrue(databaseTable.deleteById("tasks", id));
+        databaseTable.insertRecords("Tasks", "DELETE", "Task for delete");
+        int id = databaseTable.readAllRecords("Tasks").size();
+        assertTrue(databaseTable.deleteById("Tasks", id));
     }
 
 }

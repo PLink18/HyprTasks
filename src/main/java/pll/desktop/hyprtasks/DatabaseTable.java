@@ -6,19 +6,11 @@ import java.util.List;
 
 public class DatabaseTable {
 
-    public DatabaseTable() {
-        createTables();
+    public DatabaseTable(String sql) {
+        createTables(sql);
     }
 
-    public void createTables() {
-        String sql = "CREATE TABLE IF NOT EXISTS tasks (" +
-                "id INT AUTO_INCREMENT PRIMARY KEY, " +
-                "title VARCHAR, " +
-                "description VARCHAR, " +
-                "deadline DATE, " +
-                "priority INT, " +
-                "status INT, " +
-                "tags INT )";
+    public void createTables(String sql) {
         try {
             Connection connection = DataBaseConnection.getConnection();
             Statement statement = connection.createStatement();
@@ -26,6 +18,32 @@ public class DatabaseTable {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static DatabaseTable users() {
+        String sql = "CREATE TABLE IF NOT EXISTS Users (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                "username VARCHAR UNIQUE NOT_NULL, " +
+                "password VARCHAR NOT_NULL, " +
+                "email VARCHAR NOT_NULL, " +
+                "tasks_id INT, " +
+                "FOREIGN KEY (tasks_id) REFERENCES Tasks(id))";
+        return new DatabaseTable(sql);
+    }
+
+    public static DatabaseTable tasks() {
+        String sql = "CREATE TABLE IF NOT EXISTS Tasks (" +
+                "id INT AUTO_INCREMENT PRIMARY KEY, " +
+                "title VARCHAR, " +
+                "description VARCHAR, " +
+                "deadline DATE, " +
+                "priority_id INT DEFAULT 1, " +
+                "status_id INT DEFAULT 1, " +
+                "tags_id INT DEFAULT 1, " +
+                "FOREIGN KEY (priority_id) REFERENCES Priority(id), " +
+                "FOREIGN KEY (status_id) REFERENCES Statuses(id), " +
+                "FOREIGN KEY (tags_id) REFERENCES Tags(id))";
+        return new DatabaseTable(sql);
     }
 
     public void insertRecords(String tableName, String title, String description) {
