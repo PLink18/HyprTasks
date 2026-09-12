@@ -2,17 +2,15 @@ package pll.desktop.hyprtasks;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
-public class DataBase {
+public class DataBaseConnection {
 
-    public Connection getNewConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         Properties properties = new Properties();
 
-        try (InputStream in = getClass().getResourceAsStream("/db.properties")) {
+        try (InputStream in = DataBaseConnection.class.getResourceAsStream("/db.properties")) {
             properties.load(in);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -21,8 +19,6 @@ public class DataBase {
         String url = properties.getProperty("db.url");
         String user = properties.getProperty("db.user");
         String password = properties.getProperty("db.password");
-
         return DriverManager.getConnection(url, user, password);
     }
-
 }

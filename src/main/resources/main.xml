@@ -6,37 +6,6 @@
       <object id="overlay" class="GtkOverlay">
         <child>
           <object id="box" class="GtkBox">
-            <child>
-              <object id="column1" class="GtkBox">
-                <property name="orientation">vertical</property>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="label">Leha loh</property>
-                  </object>
-                </child>
-                <child>
-                  <object class="GtkLabel">
-                    <property name="label">Leha loh</property>
-                  </object>
-                </child>
-              </object>
-
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label">Leha loh</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label">Leha loh</property>
-              </object>
-            </child>
-            <child>
-              <object class="GtkLabel">
-                <property name="label">Leha loh</property>
-              </object>
-            </child>
           </object>
         </child>
       </object>

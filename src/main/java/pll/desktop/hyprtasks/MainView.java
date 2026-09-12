@@ -27,14 +27,9 @@ public class MainView {
         }
 
         Window window = (Window) builder.getObject("window");
-        window.setApplication(app);
-
-        Overlay overlay = (Overlay) builder.getObject("overlay");
-
-        window.setVisible(true);
-    }
-
-    private static void printHello() {
-        System.out.println("Hello World");
+        if (window != null) {
+            window.setApplication(app);
+            window.setVisible(true);
+        }
     }
 }
