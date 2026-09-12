@@ -24,6 +24,8 @@ public class Task {
         this.id = id;
         this.title = title;
         this.description = description;
+        this.priority = Priority.LOW;
+        this.status = Status.TODO;
     }
 
     public int getId() {
@@ -48,6 +50,14 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override

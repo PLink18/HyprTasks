@@ -4,15 +4,15 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataBaseController {
+public class DatabaseTable {
 
-    public DataBaseController() {
+    public DatabaseTable() {
         createTables();
     }
 
     public void createTables() {
         String sql = "CREATE TABLE IF NOT EXISTS tasks (" +
-                "task_id INT AUTO_INCREMENT PRIMARY KEY, " +
+                "id INT AUTO_INCREMENT PRIMARY KEY, " +
                 "title VARCHAR, " +
                 "description VARCHAR, " +
                 "deadline DATE, " +
@@ -43,37 +43,47 @@ public class DataBaseController {
 
     public List<Task> readAllRecords(String tableName) {
         String sql = "SELECT * FROM " + tableName;
-        List<Task> tasks = new ArrayList<>();
+        List<Task> records = new ArrayList<>();
 
         try (Connection connection = DataBaseConnection.getConnection()){
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                tasks.add(mapRow(resultSet));
+                records.add(mapRow(resultSet));
             }
-
-            return tasks;
+            return records;
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     public boolean updateRecord(Task task) {
-        String sql = "UPDATE tasks SET title = ?, description = ? WHERE task_id = ?";
-        try (Connection conn = DataBaseConnection.getConnection();
-             PreparedStatement preparedStatement = conn.prepareStatement(sql)) {
+        String sql = "UPDATE tasks SET title = ?, description = ? WHERE id = ?";
+        try (Connection connection = DataBaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, task.getTitle());
             preparedStatement.setString(2, task.getDescription());
             preparedStatement.setInt(3, task.getId());
             return preparedStatement.executeUpdate() > 0;
         } catch (SQLException e) {
-            throw new RuntimeException("Ошибка обновления задачи", e);
+            throw new RuntimeException(e);
+        }
+    }
+
+    public boolean deleteById(String tableName, int id) {
+        String sql = "DELETE FROM " + tableName + " WHERE id = ?";
+        try (Connection connection = DataBaseConnection.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate() > 0;
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
     private Task mapRow(ResultSet rs) throws SQLException {
         return new Task(
-                rs.getInt("task_id"),
+                rs.getInt("id"),
                 rs.getString("title"),
                 rs.getString("description")
         );
