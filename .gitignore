@@ -41,3 +41,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+data/HyprTasks.trace.db
+data/HyprTasks.mv.db
+.idea/inspectionProfiles/Project_Default.xml
+.idea/encodings.xml
+.idea/codeStyles/codeStyleConfig.xml
