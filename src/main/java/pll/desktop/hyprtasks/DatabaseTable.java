@@ -23,9 +23,9 @@ public class DatabaseTable {
     public static DatabaseTable users() {
         String sql = "CREATE TABLE IF NOT EXISTS Users (" +
                 "id INT AUTO_INCREMENT PRIMARY KEY, " +
-                "username VARCHAR UNIQUE NOT_NULL, " +
-                "password VARCHAR NOT_NULL, " +
-                "email VARCHAR NOT_NULL, " +
+                "username VARCHAR UNIQUE NOT NULL, " +
+                "password VARCHAR NOT NULL, " +
+                "email VARCHAR NOT NULL, " +
                 "tasks_id INT, " +
                 "FOREIGN KEY (tasks_id) REFERENCES Tasks(id))";
         return new DatabaseTable(sql);

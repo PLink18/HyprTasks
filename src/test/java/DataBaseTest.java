@@ -47,10 +47,13 @@ public class DataBaseTest {
     @Test
     public void testDeleteById() {
         DatabaseTable databaseTable = DatabaseTable.tasks();
-
         databaseTable.insertRecords("Tasks", "DELETE", "Task for delete");
         int id = databaseTable.readAllRecords("Tasks").size();
         assertTrue(databaseTable.deleteById("Tasks", id));
     }
 
+    @Test
+    public void testEquality() {
+        assertNotEquals(DatabaseTable.tasks(), DatabaseTable.users());
+    }
 }
