@@ -1,35 +1,24 @@
 package pll.desktop.hyprtasks;
 
-import org.gnome.gtk.*;
-import org.javagi.base.GErrorException;
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.StackPane;
+import javafx.stage.Stage;
 
 
-public class MainView {
+public class MainView extends Application {
 
-    final String APP_NAME = "pll.desktop.hyprtasks";
+    @Override
+    public void start(Stage primaryStage) {
+        Button btn = new Button("Нажми меня!");
+        btn.setOnAction(e -> System.out.println("Hello, JavaFX!"));
 
-    static void main(String[] args) {
-        new MainView(args);
-    }
+        StackPane root = new StackPane(btn);
+        Scene scene = new Scene(root, 400, 300);
 
-    public MainView(String[] args) {
-        Application app = new Application(APP_NAME);
-        app.onActivate(() -> activate(app));
-        app.run(args);
-    }
-
-    private void activate(Application app) {
-        GtkBuilder builder = new GtkBuilder();
-        try {
-            builder.addFromFile("src/main/resources/main.xml");
-        } catch (GErrorException e) {
-            throw new RuntimeException(e);
-        }
-
-        Window window = (Window) builder.getObject("window");
-        if (window != null) {
-            window.setApplication(app);
-            window.setVisible(true);
-        }
+        primaryStage.setTitle("Hello JavaFX + Gradle");
+        primaryStage.setScene(scene);
+        primaryStage.show();
     }
 }
