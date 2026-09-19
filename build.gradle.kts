@@ -5,7 +5,7 @@ plugins {
 }
 
 group = "pll.desktop.hyprtasks"
-version = "0.1.1"
+version = "0.1.2"
 
 repositories {
     mavenCentral()
@@ -19,12 +19,12 @@ dependencies {
 }
 
 javafx {
-    version = "25.0.4"
+    version = "26"
     modules = listOf("javafx.controls", "javafx.fxml")
 }
 
 application {
-    mainClass.set("pll.desktop.hyprtasks.MainView")
+    mainClass.set("pll.desktop.hyprtasks.Main")
 }
 
 tasks.test {

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" spacing="6">
+   <children>
+      <Label text="Название задачи" wrapText="true" />
+      <Label text="Описание задачи" wrapText="true" />
+      <HBox alignment="CENTER_LEFT" spacing="6">
+         <children>
+            <Label text="High" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="12.05" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
