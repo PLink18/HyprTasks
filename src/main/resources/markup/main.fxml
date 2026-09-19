@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -18,127 +22,224 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
 <BorderPane fx:id="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pll.desktop.hyprtasks.MainController">
-   <top>
-      <VBox>
-         <MenuBar>
-            <menus>
-               <Menu text="File">
-                  <items>
-                     <MenuItem accelerator="Shortcut+Q" text="Close" />
-                  </items>
-               </Menu>
-               <Menu text="Edit">
-                  <items>
-                     <MenuItem accelerator="Delete" text="Delete" />
-                  </items>
-               </Menu>
-               <Menu text="Help">
-                  <items>
-                     <MenuItem text="About" />
-                  </items>
-               </Menu>
-            </menus>
-         </MenuBar>
+  <top>
+    <VBox>
+      <MenuBar>
+        <menus>
+          <Menu text="File">
+            <items>
+              <MenuItem accelerator="Shortcut+N" onAction="#addItem" text="New Task" />
+              <MenuItem accelerator="Shortcut+O" text="Open" />
+              <MenuItem accelerator="Shortcut+S" text="Save" />
+              <SeparatorMenuItem />
+              <MenuItem accelerator="Shortcut+Q" text="Close" />
+            </items>
+          </Menu>
+          <Menu text="Edit">
+            <items>
+              <MenuItem accelerator="Shortcut+Z" text="Undo" />
+              <MenuItem accelerator="Shortcut+Shift+Z" text="Redo" />
+              <SeparatorMenuItem />
+              <MenuItem accelerator="Shortcut+C" text="Copy" />
+              <MenuItem accelerator="Shortcut+V" text="Paste" />
+              <SeparatorMenuItem />
+              <MenuItem accelerator="Delete" text="Delete" />
+            </items>
+          </Menu>
+          <Menu text="View">
+            <items>
+              <MenuItem text="Kanban" />
+              <MenuItem text="Table" />
+              <MenuItem text="Calendar" />
+            </items>
+          </Menu>
+          <Menu text="Help">
+            <items>
+              <MenuItem text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
 
-         <ToolBar styleClass="app-toolbar">
-            <TextField fx:id="searchField" prefWidth="320" promptText="Поиск задач..." HBox.hgrow="ALWAYS" />
-            <Button text="Фильтры" />
-            <Separator orientation="VERTICAL" />
-            <Button defaultButton="true" onAction="#addItem" text="+ Задача" />
-            <Region HBox.hgrow="ALWAYS" />
-            <Button text="Обновить" />
-         </ToolBar>
-      </VBox>
-   </top>
-   <center>
-      <HBox BorderPane.alignment="CENTER">
-         <children>
-            <TabPane tabClosingPolicy="UNAVAILABLE" HBox.hgrow="ALWAYS">
-               <tabs>
-                  <Tab text="Kanban">
-                     <content>
-                        <HBox>
-                           <children>
-                              <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="200.0" text="Todo" textAlignment="CENTER">
-                                 <content>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Add item" />
-                                       </children>
-                                    </VBox>
-                                 </content>
-                              </TitledPane>
-                              <TitledPane alignment="CENTER" collapsible="false" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="200.0" text="In progress" textAlignment="CENTER">
-                                 <content>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Add item" />
-                                       </children>
-                                    </VBox>
-                                 </content>
-                              </TitledPane>
-                              <TitledPane alignment="CENTER" collapsible="false" layoutX="210.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="200.0" text="On review" textAlignment="CENTER">
-                                 <content>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Add item" />
-                                       </children>
-                                    </VBox>
-                                 </content>
-                              </TitledPane>
-                              <TitledPane alignment="CENTER" collapsible="false" layoutX="410.0" layoutY="10.0" maxHeight="1.7976931348623157E308" prefWidth="200.0" text="Done" textAlignment="CENTER">
-                                 <content>
-                                    <VBox prefHeight="200.0" prefWidth="100.0">
-                                       <children>
-                                          <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Add item" />
-                                       </children>
-                                    </VBox>
-                                 </content>
-                              </TitledPane>
-                           </children>
-                        </HBox>
-                     </content>
-                  </Tab>
-                  <Tab text="Table">
-                     <content>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                           <children>
-                              <TableView editable="true" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                 <columns>
-                                    <TableColumn prefWidth="75.0" text="ID" />
-                                    <TableColumn prefWidth="75.0" text="Name" />
-                                    <TableColumn prefWidth="75.0" text="Priority" />
-                                    <TableColumn prefWidth="75.0" text="Status" />
-                                 </columns>
-                              </TableView>
-                           </children>
-                        </AnchorPane>
-                     </content>
-                  </Tab>
-               </tabs>
-            </TabPane>
-         </children>
-      </HBox>
-   </center>
-   <left>
-      <VBox fx:id="navigation" maxWidth="260" minWidth="64" prefWidth="200" spacing="4">
-         <ToggleButton fx:id="profileButton" maxWidth="Infinity" onAction="#relocate" text="Профиль" />
-         <ToggleButton fx:id="tasksButton" maxWidth="Infinity" onAction="#relocate" selected="true" text="Задачи" />
-         <ToggleButton fx:id="notesButton" maxWidth="Infinity" onAction="#relocate" text="Заметки" />
-         <Region VBox.vgrow="ALWAYS" />
-         <Separator />
-         <Button maxWidth="Infinity" text="Настройки" />
+      <ToolBar>
+        <items>
+          <TextField fx:id="searchField" prefWidth="320" promptText="Поиск задач..." />
+          <Button text="Фильтры" />
+          <ComboBox prefWidth="150" promptText="Приоритет" />
+          <CheckBox mnemonicParsing="false" text="Только мои" />
+          <Separator orientation="VERTICAL" />
+          <Button defaultButton="true" onAction="#addItem" text="+ Задача" />
+          <Region HBox.hgrow="ALWAYS" />
+          <Button text="Обновить" />
+        </items>
+      </ToolBar>
+    </VBox>
+  </top>
 
-      </VBox>
-   </left>
-   <bottom>
-      <HBox alignment="CENTER_LEFT" spacing="12" styleClass="status-bar">
-         <Label fx:id="statusLabel" text="Готово" />
-         <Region HBox.hgrow="ALWAYS" />
-         <Label fx:id="tasksCounter" text="Задач: 0" />
-      </HBox>
-   </bottom>
+  <left>
+    <VBox fx:id="navigation" maxWidth="260" minWidth="64" prefWidth="200" spacing="4">
+      <children>
+        <ToggleButton fx:id="profileButton" maxWidth="Infinity" onAction="#relocate" text="Профиль" />
+        <ToggleButton fx:id="tasksButton" maxWidth="Infinity" onAction="#relocate" selected="true" text="Задачи" />
+        <ToggleButton fx:id="notesButton" maxWidth="Infinity" onAction="#relocate" text="Заметки" />
+        <Region VBox.vgrow="ALWAYS" />
+        <Separator />
+        <Button maxWidth="Infinity" text="Настройки" />
+      </children>
+    </VBox>
+  </left>
+
+  <center>
+    <StackPane fx:id="contentArea">
+      <children>
+        <TabPane fx:id="mainTabs" tabClosingPolicy="UNAVAILABLE">
+          <tabs>
+
+            <Tab text="Kanban">
+              <content>
+                <HBox spacing="8">
+                  <children>
+
+                    <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="220.0" text="Todo" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                      <content>
+                        <VBox spacing="8">
+                          <children>
+                            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                              <content>
+                                <VBox spacing="8">
+                                  <children>
+                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="task_card.fxml" />
+                                  </children>
+                                </VBox>
+                              </content>
+                            </ScrollPane>
+                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Добавить задачу" />
+                          </children>
+                        </VBox>
+                      </content>
+                    </TitledPane>
+
+                    <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="220.0" text="In progress" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                      <content>
+                        <VBox spacing="8">
+                          <children>
+                            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                              <content>
+                                <VBox spacing="8">
+                                  <children>
+                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="task_card.fxml" />
+                                  </children>
+                                </VBox>
+                              </content>
+                            </ScrollPane>
+                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Добавить задачу" />
+                          </children>
+                        </VBox>
+                      </content>
+                    </TitledPane>
+
+                    <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="220.0" text="On review" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                      <content>
+                        <VBox spacing="8">
+                          <children>
+                            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                              <content>
+                                <VBox spacing="8">
+                                  <children>
+                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="task_card.fxml" />
+                                  </children>
+                                </VBox>
+                              </content>
+                            </ScrollPane>
+                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Добавить задачу" />
+                          </children>
+                        </VBox>
+                      </content>
+                    </TitledPane>
+
+                    <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="220.0" text="Done" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+                      <content>
+                        <VBox spacing="8">
+                          <children>
+                            <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                              <content>
+                                <VBox spacing="8">
+                                  <children>
+                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="task_card.fxml" />
+                                  </children>
+                                </VBox>
+                              </content>
+                            </ScrollPane>
+                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Добавить задачу" />
+                          </children>
+                        </VBox>
+                      </content>
+                    </TitledPane>
+
+                  </children>
+                </HBox>
+              </content>
+            </Tab>
+
+            <Tab text="Table">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                  <children>
+                    <TableView editable="true" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                      <columns>
+                        <TableColumn prefWidth="70.0" text="ID" />
+                        <TableColumn prefWidth="260.0" text="Name" />
+                        <TableColumn prefWidth="110.0" text="Priority" />
+                        <TableColumn prefWidth="130.0" text="Status" />
+                        <TableColumn prefWidth="120.0" text="Due Date" />
+                        <TableColumn prefWidth="150.0" text="Assignee" />
+                        <TableColumn prefWidth="120.0" text="Tags" />
+                      </columns>
+                    </TableView>
+                  </children>
+                </AnchorPane>
+              </content>
+            </Tab>
+
+          </tabs>
+        </TabPane>
+
+        <VBox fx:id="profileView" managed="false" spacing="16" visible="false">
+               <children>
+                  <Label text="Профиль" />
+               </children>
+        </VBox>
+
+        <VBox fx:id="notesView" managed="false" spacing="12" visible="false">
+               <children>
+                  <Label text="Заметки" />
+               </children>
+        </VBox>
+
+      </children>
+    </StackPane>
+  </center>
+
+  <bottom>
+    <HBox alignment="CENTER_LEFT" spacing="12">
+      <children>
+        <Label fx:id="statusLabel" text="Готово" />
+        <Separator orientation="VERTICAL" />
+        <Label text="Проект: HyprTasks" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="tasksCounter" text="Задач: 0" />
+      </children>
+    </HBox>
+  </bottom>
 </BorderPane>
