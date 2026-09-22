@@ -1,6 +1,5 @@
 import org.junit.jupiter.api.Test;
-import pll.desktop.hyprtasks.DataBaseConnection;
-import pll.desktop.hyprtasks.DatabaseTable;
+import pll.desktop.hyprtasks.DatabaseHelper;
 import pll.desktop.hyprtasks.Task;
 
 import java.sql.Connection;
@@ -12,7 +11,7 @@ public class DataBaseTest {
 
     @Test
     public void testConnection() {
-        try(Connection connection = DataBaseConnection.getConnection()) {
+        try(Connection connection = DatabaseHelper.getConnection()) {
             assertTrue(connection.isValid(1));
             assertFalse(connection.isClosed());
         } catch (SQLException e) {
@@ -21,39 +20,30 @@ public class DataBaseTest {
     }
 
     @Test
-    public void testInsertRecords() {
-        Task task = new Task(0, "Test task", "Task for test");
-        DatabaseTable databaseTable = DatabaseTable.tasks();
-        int startRecordsCount = databaseTable.readAllRecords("Tasks").size();
-        databaseTable.insertRecords("Tasks", task.getTitle(), task.getDescription());
-        assertEquals(startRecordsCount+1, databaseTable.readAllRecords("Tasks").size());
+    public void testReadAllRecords() {
+        assertNotNull(DatabaseHelper.readAllRecords("Tasks"));
     }
 
     @Test
-    public void testReadAllRecords() {
-        DatabaseTable databaseTable = DatabaseTable.tasks();
-        assertNotNull(databaseTable.readAllRecords("Tasks"));
+    public void testInsertRecords() {
+        Task task = new Task(0, "Test task", "Task for test");
+        int startRecordsCount = DatabaseHelper.readAllRecords("Tasks").size();
+        DatabaseHelper.insertRecords("Tasks", task.getTitle(), task.getDescription());
+        assertEquals(startRecordsCount+1, DatabaseHelper.readAllRecords("Tasks").size());
     }
 
     @Test
     public void testUpdateRecord() {
-        DatabaseTable databaseTable = DatabaseTable.tasks();
-        databaseTable.insertRecords("Tasks", "UPDATE", "Task for update");
-        int id = databaseTable.readAllRecords("Tasks").size();
+        DatabaseHelper.insertRecords("Tasks", "UPDATE", "Task for update");
+        int id = DatabaseHelper.readAllRecords("Tasks").size();
         Task task = new Task(id, "UPDATE", "This is updated task");
-        assertTrue(databaseTable.updateRecord(task));
+        assertTrue(DatabaseHelper.updateRecord(task));
     }
 
     @Test
     public void testDeleteById() {
-        DatabaseTable databaseTable = DatabaseTable.tasks();
-        databaseTable.insertRecords("Tasks", "DELETE", "Task for delete");
-        int id = databaseTable.readAllRecords("Tasks").size();
-        assertTrue(databaseTable.deleteById("Tasks", id));
-    }
-
-    @Test
-    public void testEquality() {
-        assertNotEquals(DatabaseTable.tasks(), DatabaseTable.users());
+        DatabaseHelper.insertRecords("Tasks", "DELETE", "Task for delete");
+        int id = DatabaseHelper.readAllRecords("Tasks").size();
+        assertTrue(DatabaseHelper.deleteById("Tasks", id));
     }
 }
