@@ -96,12 +96,12 @@
   <center>
     <StackPane fx:id="contentArea">
       <children>
-
         <VBox fx:id="profileView" managed="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="61.0" prefWidth="120.0" spacing="16">
                <children>
                   <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="18.0" prefWidth="139.0" text="Профиль" />
                </children>
         </VBox>
+
         <TabPane fx:id="mainTabs" tabClosingPolicy="UNAVAILABLE" visible="false">
           <tabs>
 

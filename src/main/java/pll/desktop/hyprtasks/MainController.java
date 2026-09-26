@@ -13,7 +13,11 @@ public class MainController {
 
     public void relocate(ActionEvent event) {
         ToggleButton toggleButton = (ToggleButton) event.getSource();
-        switch (toggleButton.getId()) {
+        changeView(toggleButton.getId());
+    }
+
+    private void changeView(String id) {
+        switch (id) {
             case "profileButton":
                 profileView.setVisible(true);
                 mainTabs.setVisible(false);
@@ -34,7 +38,7 @@ public class MainController {
 
 
     public void addItem(ActionEvent event) {
-        
+
     }
 
     public void addNote(ActionEvent event) {
