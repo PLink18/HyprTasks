@@ -96,7 +96,13 @@
   <center>
     <StackPane fx:id="contentArea">
       <children>
-        <TabPane fx:id="mainTabs" tabClosingPolicy="UNAVAILABLE">
+
+        <VBox fx:id="profileView" managed="false" maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="61.0" prefWidth="120.0" spacing="16">
+               <children>
+                  <Label maxWidth="1.7976931348623157E308" minWidth="-Infinity" prefHeight="18.0" prefWidth="139.0" text="Профиль" />
+               </children>
+        </VBox>
+        <TabPane fx:id="mainTabs" tabClosingPolicy="UNAVAILABLE" visible="false">
           <tabs>
 
             <Tab text="Kanban">
@@ -215,15 +221,9 @@
           </tabs>
         </TabPane>
 
-        <VBox fx:id="profileView" managed="false" spacing="16" visible="false">
-               <children>
-                  <Label text="Профиль" />
-               </children>
-        </VBox>
-
         <VBox fx:id="notesView" managed="false" spacing="12" visible="false">
                <children>
-                  <Label text="Заметки" />
+                  <Label minWidth="-Infinity" prefHeight="18.0" prefWidth="91.0" text="Заметки" />
                </children>
         </VBox>
 

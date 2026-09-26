@@ -1,14 +1,40 @@
 package pll.desktop.hyprtasks;
 
 import javafx.event.ActionEvent;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.ToggleButton;
+import javafx.scene.layout.VBox;
 
 public class MainController {
 
+    public VBox profileView;
+    public TabPane mainTabs;
+    public VBox notesView;
+
     public void relocate(ActionEvent event) {
+        ToggleButton toggleButton = (ToggleButton) event.getSource();
+        switch (toggleButton.getId()) {
+            case "profileButton":
+                profileView.setVisible(true);
+                mainTabs.setVisible(false);
+                notesView.setVisible(false);
+                break;
+            case "tasksButton":
+                profileView.setVisible(false);
+                mainTabs.setVisible(true);
+                notesView.setVisible(false);
+                break;
+            case "notesButton":
+                profileView.setVisible(false);
+                mainTabs.setVisible(false);
+                notesView.setVisible(true);
+                break;
+        }
     }
 
 
     public void addItem(ActionEvent event) {
+        
     }
 
     public void addNote(ActionEvent event) {
