@@ -39,10 +39,7 @@ public class DatabaseTable {
                 "deadline DATE, " +
                 "priority_id INT DEFAULT 1, " +
                 "status_id INT DEFAULT 1, " +
-                "tags_id INT DEFAULT 1, " +
-                "FOREIGN KEY (priority_id) REFERENCES Priority(id), " +
-                "FOREIGN KEY (status_id) REFERENCES Statuses(id), " +
-                "FOREIGN KEY (tags_id) REFERENCES Tags(id))";
+                "tags_id INT DEFAULT 1);";
         return new DatabaseTable(sql);
     }
 
