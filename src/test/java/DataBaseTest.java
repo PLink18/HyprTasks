@@ -1,9 +1,11 @@
 import org.junit.jupiter.api.Test;
 import pll.desktop.hyprtasks.DatabaseHelper;
 import pll.desktop.hyprtasks.Task;
+import pll.desktop.hyprtasks.TaskRepository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -21,29 +23,39 @@ public class DataBaseTest {
 
     @Test
     public void testReadAllRecords() {
-        assertNotNull(DatabaseHelper.readAllRecords("Tasks"));
+        TaskRepository repository = new TaskRepository();
+        List<Task> tasks = repository.findAll();
+        assertNotNull(tasks);
     }
 
     @Test
-    public void testInsertRecords() {
+    public void testSaveRecords() {
+        TaskRepository repository = new TaskRepository();
         Task task = new Task(0, "Test task", "Task for test");
-        int startRecordsCount = DatabaseHelper.readAllRecords("Tasks").size();
-        DatabaseHelper.insertRecords("Tasks", task.getTitle(), task.getDescription());
-        assertEquals(startRecordsCount+1, DatabaseHelper.readAllRecords("Tasks").size());
+        int startRecords = repository.findAll().size();
+        repository.save(task);
+        int finalRecords = repository.findAll().size();
+        assertTrue(startRecords < finalRecords);
     }
 
     @Test
     public void testUpdateRecord() {
-        DatabaseHelper.insertRecords("Tasks", "UPDATE", "Task for update");
-        int id = DatabaseHelper.readAllRecords("Tasks").size();
-        Task task = new Task(id, "UPDATE", "This is updated task");
-        assertTrue(DatabaseHelper.updateRecord(task));
+        TaskRepository repository = new TaskRepository();
+        int id = repository.findAll().size();
+        Task oldTask = repository.findById(id);
+        Task task = new Task(id, "UPDATE", "Updated task");
+        repository.update(task);
+        Task newTask = repository.findById(id);
+        assertNotEquals(oldTask, newTask);
     }
 
     @Test
     public void testDeleteById() {
-        DatabaseHelper.insertRecords("Tasks", "DELETE", "Task for delete");
-        int id = DatabaseHelper.readAllRecords("Tasks").size();
-        assertTrue(DatabaseHelper.deleteById("Tasks", id));
+        TaskRepository repository = new TaskRepository();
+        int id = repository.findAll().size()+1;
+        Task task = new Task(id, "DELETE", "Task for delete");
+        repository.save(task);
+        repository.delete(id);
+        assertTrue(repository.findAll().size() < id);
     }
 }

@@ -24,8 +24,6 @@ public class Task {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.priority = Priority.LOW;
-        this.status = Status.TODO;
     }
 
     public int getId() {
