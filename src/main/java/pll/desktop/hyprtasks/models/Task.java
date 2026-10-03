@@ -10,6 +10,7 @@ public class Task {
     private Date deadline;
     private Priority priority;
     private Status status;
+    private Project project;
 
     public Task(int id, String title, String description) {
         this.id = id;
