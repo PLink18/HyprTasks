@@ -10,27 +10,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TaskRepository implements CrudRepository<Task> {
+public class TasksRepository extends AbstractRepository<Task> {
 
     @Override
-    public Task findById(int id) {
-        String sql = "SELECT * FROM Tasks WHERE id=" + id;
-
-        try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.execute();
-            ResultSet resultSet = statement.getResultSet();
-
-            if (resultSet.next()) {
-                return mapRow(resultSet);
-            }
-
-            return null;
-
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    public String tableName() {
+        return "Tasks";
     }
 
     @Override
