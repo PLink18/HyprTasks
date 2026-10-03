@@ -1,6 +1,7 @@
-package pll.desktop.hyprtasks;
+package pll.desktop.hyprtasks.models;
 
 public class Status {
+
     private int id;
     private String name;
 

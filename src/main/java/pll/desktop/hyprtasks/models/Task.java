@@ -1,4 +1,4 @@
-package pll.desktop.hyprtasks;
+package pll.desktop.hyprtasks.models;
 
 import java.util.Date;
 

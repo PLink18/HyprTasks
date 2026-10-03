@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test;
-import pll.desktop.hyprtasks.DatabaseHelper;
-import pll.desktop.hyprtasks.Task;
-import pll.desktop.hyprtasks.TaskRepository;
+import pll.desktop.hyprtasks.helpers.ConnectionHelper;
+import pll.desktop.hyprtasks.models.Task;
+import pll.desktop.hyprtasks.repositories.TaskRepository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ public class DataBaseTest {
 
     @Test
     public void testConnection() {
-        try(Connection connection = DatabaseHelper.getConnection()) {
+        try(Connection connection = ConnectionHelper.getConnection()) {
             assertTrue(connection.isValid(1));
             assertFalse(connection.isClosed());
         } catch (SQLException e) {
@@ -22,10 +22,25 @@ public class DataBaseTest {
     }
 
     @Test
-    public void testReadAllRecords() {
+    public void testFindByID() {
+        TaskRepository repository = new TaskRepository();
+        Task task = repository.findById(1);
+        assertEquals(1, task.getId());
+    }
+
+    @Test
+    public void testFindAllRecords() {
         TaskRepository repository = new TaskRepository();
         List<Task> tasks = repository.findAll();
         assertNotNull(tasks);
+    }
+
+    @Test
+    public void testFindLastRecord() {
+        TaskRepository repository = new TaskRepository();
+        repository.save(new Task("LAST", "This is last record"));
+        Task task = repository.findLast();
+        assertEquals("LAST", task.getTitle());
     }
 
     @Test

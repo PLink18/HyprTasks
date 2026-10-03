@@ -1,4 +1,7 @@
-package pll.desktop.hyprtasks;
+package pll.desktop.hyprtasks.repositories;
+
+import pll.desktop.hyprtasks.helpers.ConnectionHelper;
+import pll.desktop.hyprtasks.models.Task;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,7 +16,7 @@ public class TaskRepository implements CrudRepository<Task> {
     public Task findById(int id) {
         String sql = "SELECT * FROM Tasks WHERE id=" + id;
 
-        try (Connection connection = DatabaseHelper.getConnection();
+        try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.execute();
@@ -36,7 +39,7 @@ public class TaskRepository implements CrudRepository<Task> {
 
         List<Task> tasks = new ArrayList<>();
 
-        try (Connection connection = DatabaseHelper.getConnection();
+        try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.execute();
@@ -56,7 +59,7 @@ public class TaskRepository implements CrudRepository<Task> {
     public Task findLast() {
         String sql = "SELECT * FROM (SELECT a.*, max(id) OVER () AS max_id FROM Tasks a) WHERE id = max_id";
 
-        try (Connection connection = DatabaseHelper.getConnection();
+        try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.execute();
@@ -76,7 +79,7 @@ public class TaskRepository implements CrudRepository<Task> {
     @Override
     public void save(Task entity) {
         String sql = "INSERT INTO Tasks (title, description) VALUES (?, ?)";
-        try (Connection connection = DatabaseHelper.getConnection();
+        try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, entity.getTitle());
@@ -92,7 +95,7 @@ public class TaskRepository implements CrudRepository<Task> {
     @Override
     public void update(Task entity) {
         String sql = "UPDATE Tasks SET title = ?, description = ? WHERE id = ?";
-        try (Connection connection = DatabaseHelper.getConnection();
+        try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, entity.getTitle());
             statement.setString(2, entity.getDescription());
@@ -107,7 +110,7 @@ public class TaskRepository implements CrudRepository<Task> {
     public void delete(int id) {
         String sql = "DELETE FROM Tasks WHERE id=" + id;
 
-        try (Connection connection = DatabaseHelper.getConnection();
+        try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.execute();

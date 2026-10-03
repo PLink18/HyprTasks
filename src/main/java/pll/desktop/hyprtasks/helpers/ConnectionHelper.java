@@ -1,4 +1,4 @@
-package pll.desktop.hyprtasks;
+package pll.desktop.hyprtasks.helpers;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -7,12 +7,12 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class DatabaseHelper {
+public class ConnectionHelper {
 
     public static Connection getConnection() throws SQLException {
         Properties properties = new Properties();
 
-        try (InputStream in = DatabaseHelper.class.getResourceAsStream("/db.properties")) {
+        try (InputStream in = ConnectionHelper.class.getResourceAsStream("/db.properties")) {
             properties.load(in);
         } catch (IOException e) {
             throw new RuntimeException(e);
