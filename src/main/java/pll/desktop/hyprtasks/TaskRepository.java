@@ -52,6 +52,7 @@ public class TaskRepository implements CrudRepository<Task> {
         }
     }
 
+    @Override
     public Task findLast() {
         String sql = "SELECT * FROM (SELECT a.*, max(id) OVER () AS max_id FROM Tasks a) WHERE id = max_id";
 

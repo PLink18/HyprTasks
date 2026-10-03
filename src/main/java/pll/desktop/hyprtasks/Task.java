@@ -1,10 +1,15 @@
 package pll.desktop.hyprtasks;
 
+import java.util.Date;
+
 public class Task {
 
     private int id;
     private String title;
     private String description;
+    private Date deadline;
+    private Priority priority;
+    private Status status;
 
     public Task(int id, String title, String description) {
         this.id = id;
@@ -39,6 +44,30 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override
