@@ -5,23 +5,14 @@ public class Task {
     private int id;
     private String title;
     private String description;
-    private Priority priority;
-    private Status status;
-
-    enum Priority {
-        LOW,
-        MEDIUM,
-        HIGH
-    }
-
-    enum Status {
-        TODO,
-        IN_PROGRESS,
-        DONE
-    }
 
     public Task(int id, String title, String description) {
         this.id = id;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Task(String title, String description) {
         this.title = title;
         this.description = description;
     }
@@ -50,16 +41,10 @@ public class Task {
         this.description = description;
     }
 
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
     @Override
     public String toString() {
-        return "Task:" + id + ", Title: " + title + ", Description: " + description;
+        return "Task:" + id +
+                "\nTitle: " + title +
+                "\nDescription: " + description;
     }
 }

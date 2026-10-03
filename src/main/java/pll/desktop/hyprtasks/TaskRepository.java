@@ -52,6 +52,26 @@ public class TaskRepository implements CrudRepository<Task> {
         }
     }
 
+    public Task findLast() {
+        String sql = "SELECT * FROM (SELECT a.*, max(id) OVER () AS max_id FROM Tasks a) WHERE id = max_id";
+
+        try (Connection connection = DatabaseHelper.getConnection();
+             PreparedStatement statement = connection.prepareStatement(sql)) {
+
+            statement.execute();
+            ResultSet resultSet = statement.getResultSet();
+
+            if (resultSet.next()) {
+                return mapRow(resultSet);
+            }
+
+            return null;
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public void save(Task entity) {
         String sql = "INSERT INTO Tasks (title, description) VALUES (?, ?)";
@@ -63,7 +83,6 @@ public class TaskRepository implements CrudRepository<Task> {
 
             preparedStatement.execute();
 
-            System.out.println("Record inserted successfully!");
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

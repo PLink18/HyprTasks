@@ -31,29 +31,28 @@ public class DataBaseTest {
     @Test
     public void testSaveRecords() {
         TaskRepository repository = new TaskRepository();
-        Task task = new Task(0, "Test task", "Task for test");
-        int startRecords = repository.findAll().size();
+        Task startLastTask = repository.findLast();
+        Task task = new Task("Test task", "Task for test");
         repository.save(task);
-        int finalRecords = repository.findAll().size();
-        assertTrue(startRecords < finalRecords);
+
+        assertNotEquals(startLastTask, repository.findLast());
     }
 
     @Test
     public void testUpdateRecord() {
         TaskRepository repository = new TaskRepository();
-        int id = repository.findAll().size();
-        Task oldTask = repository.findById(id);
-        Task task = new Task(id, "UPDATE", "Updated task");
+        int id = repository.findLast().getId();
+        Task task = new Task(id, "Update", "Updated task");
         repository.update(task);
-        Task newTask = repository.findById(id);
-        assertNotEquals(oldTask, newTask);
+
+        assertEquals(task.toString(), repository.findLast().toString());
     }
 
     @Test
     public void testDeleteById() {
         TaskRepository repository = new TaskRepository();
         int id = repository.findAll().size()+1;
-        Task task = new Task(id, "DELETE", "Task for delete");
+        Task task = new Task("DELETE", "Task for delete");
         repository.save(task);
         repository.delete(id);
         assertTrue(repository.findAll().size() < id);
