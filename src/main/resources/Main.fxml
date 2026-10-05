@@ -32,7 +32,7 @@
         <menus>
           <Menu text="File">
             <items>
-              <MenuItem accelerator="Shortcut+N" onAction="#openCreationDialog" text="New Task" />
+              <MenuItem accelerator="Shortcut+N" onAction="#openAddTaskPanel" text="New Task" />
               <MenuItem accelerator="Shortcut+O" text="Open" />
               <MenuItem accelerator="Shortcut+S" text="Save" />
               <SeparatorMenuItem />
@@ -72,7 +72,7 @@
           <ComboBox prefWidth="150" promptText="Приоритет" />
           <CheckBox mnemonicParsing="false" text="Только мои" />
           <Separator orientation="VERTICAL" />
-          <Button defaultButton="true" onAction="#openCreationDialog" text="+ Задача" />
+          <Button defaultButton="true" onAction="#openAddTaskPanel" text="+ Задача" />
           <Region HBox.hgrow="ALWAYS" />
           <Button text="Обновить" />
         </items>
@@ -83,9 +83,9 @@
   <left>
     <VBox fx:id="navigation" maxWidth="260" minWidth="64" prefWidth="200" spacing="4">
       <children>
-        <ToggleButton fx:id="profileButton" maxWidth="Infinity" onAction="#relocate" text="Профиль" />
-        <ToggleButton fx:id="tasksButton" maxWidth="Infinity" onAction="#relocate" selected="true" text="Задачи" />
-        <ToggleButton fx:id="notesButton" maxWidth="Infinity" onAction="#relocate" text="Заметки" />
+        <ToggleButton fx:id="profileButton" maxWidth="Infinity" text="Профиль" />
+        <ToggleButton fx:id="tasksButton" maxWidth="Infinity" selected="true" text="Задачи" />
+        <ToggleButton fx:id="notesButton" maxWidth="Infinity" text="Заметки" />
         <Region VBox.vgrow="ALWAYS" />
         <Separator />
         <Button maxWidth="Infinity" text="Настройки" />
@@ -95,7 +95,15 @@
 
   <center>
     <StackPane fx:id="contentArea">
+
       <children>
+
+        <VBox fx:id="notesView" managed="false" spacing="12" visible="false">
+               <children>
+                  <Label text="Заметки" />
+               </children>
+        </VBox>
+
         <TabPane fx:id="mainTabs" tabClosingPolicy="UNAVAILABLE">
           <tabs>
 
@@ -112,9 +120,9 @@
                               <content>
                                 <VBox spacing="8">
                                   <children>
-                                    <fx:include source="task_card.fxml" />
-                                    <fx:include source="task_card.fxml" />
-                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
                                   </children>
                                 </VBox>
                               </content>
@@ -132,9 +140,9 @@
                               <content>
                                 <VBox spacing="8">
                                   <children>
-                                    <fx:include source="task_card.fxml" />
-                                    <fx:include source="task_card.fxml" />
-                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
                                   </children>
                                 </VBox>
                               </content>
@@ -152,8 +160,8 @@
                               <content>
                                 <VBox spacing="8">
                                   <children>
-                                    <fx:include source="task_card.fxml" />
-                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
                                   </children>
                                 </VBox>
                               </content>
@@ -171,9 +179,9 @@
                               <content>
                                 <VBox spacing="8">
                                   <children>
-                                    <fx:include source="task_card.fxml" />
-                                    <fx:include source="task_card.fxml" />
-                                    <fx:include source="task_card.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
+                                    <fx:include source="TaskCard.fxml" />
                                   </children>
                                 </VBox>
                               </content>
@@ -217,11 +225,7 @@
                </children>
         </VBox>
 
-        <VBox fx:id="notesView" managed="false" spacing="12" visible="false">
-               <children>
-                  <Label text="Заметки" />
-               </children>
-        </VBox>
+        <fx:include fx:id="addTaskPanel" source="CreationPanel.fxml" StackPane.alignment="TOP_RIGHT" />
 
       </children>
     </StackPane>
