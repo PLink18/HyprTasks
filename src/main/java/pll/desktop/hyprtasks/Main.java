@@ -6,7 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-import java.util.Objects;
+import java.io.IOException;
 
 
 public class Main extends Application {
@@ -19,8 +19,8 @@ public class Main extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(MAIN_MARKUP)));
+    public void start(Stage stage) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(MAIN_MARKUP));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();

@@ -32,7 +32,7 @@
         <menus>
           <Menu text="File">
             <items>
-              <MenuItem accelerator="Shortcut+N" onAction="#addItem" text="New Task" />
+              <MenuItem accelerator="Shortcut+N" onAction="#openCreationDialog" text="New Task" />
               <MenuItem accelerator="Shortcut+O" text="Open" />
               <MenuItem accelerator="Shortcut+S" text="Save" />
               <SeparatorMenuItem />
@@ -72,7 +72,7 @@
           <ComboBox prefWidth="150" promptText="Приоритет" />
           <CheckBox mnemonicParsing="false" text="Только мои" />
           <Separator orientation="VERTICAL" />
-          <Button defaultButton="true" onAction="#addItem" text="+ Задача" />
+          <Button defaultButton="true" onAction="#openCreationDialog" text="+ Задача" />
           <Region HBox.hgrow="ALWAYS" />
           <Button text="Обновить" />
         </items>
@@ -119,7 +119,6 @@
                                 </VBox>
                               </content>
                             </ScrollPane>
-                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Добавить задачу" />
                           </children>
                         </VBox>
                       </content>
@@ -140,7 +139,6 @@
                                 </VBox>
                               </content>
                             </ScrollPane>
-                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Добавить задачу" />
                           </children>
                         </VBox>
                       </content>
@@ -160,7 +158,6 @@
                                 </VBox>
                               </content>
                             </ScrollPane>
-                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Добавить задачу" />
                           </children>
                         </VBox>
                       </content>
@@ -181,7 +178,6 @@
                                 </VBox>
                               </content>
                             </ScrollPane>
-                            <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#addItem" text="Добавить задачу" />
                           </children>
                         </VBox>
                       </content>
