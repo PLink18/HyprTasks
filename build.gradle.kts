@@ -15,7 +15,7 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
-    implementation("com.h2database:h2:1.4.197")
+    implementation("com.oracle.database.jdbc:ojdbc11:21.9.0.0")
 }
 
 javafx {

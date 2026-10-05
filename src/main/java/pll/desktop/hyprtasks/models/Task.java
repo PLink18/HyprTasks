@@ -1,31 +1,26 @@
-package pll.desktop.hyprtasks;
+package pll.desktop.hyprtasks.models;
 
-public class Task {
+import java.util.Date;
+
+public class Task implements Entity {
 
     private int id;
     private String title;
     private String description;
+    private Date deadline;
     private Priority priority;
     private Status status;
-
-    enum Priority {
-        LOW,
-        MEDIUM,
-        HIGH
-    }
-
-    enum Status {
-        TODO,
-        IN_PROGRESS,
-        DONE
-    }
+    private Project project;
 
     public Task(int id, String title, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.priority = Priority.LOW;
-        this.status = Status.TODO;
+    }
+
+    public Task(String title, String description) {
+        this.title = title;
+        this.description = description;
     }
 
     public int getId() {
@@ -52,16 +47,42 @@ public class Task {
         this.description = description;
     }
 
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
     public void setPriority(Priority priority) {
         this.priority = priority;
+    }
+
+    public Status getStatus() {
+        return status;
     }
 
     public void setStatus(Status status) {
         this.status = status;
     }
 
+    public Project getProject() {
+        return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
+    }
+
     @Override
     public String toString() {
-        return "Task:" + id + ", Title: " + title + ", Description: " + description;
+        return "Task:" + id +
+                "\nTitle: " + title +
+                "\nDescription: " + description;
     }
 }
