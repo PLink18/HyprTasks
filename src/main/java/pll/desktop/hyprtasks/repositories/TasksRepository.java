@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TasksRepository extends AbstractRepository<Task> {
+public class TasksRepository extends Repository<Task> {
 
     @Override
     public String tableName() {
@@ -20,12 +20,9 @@ public class TasksRepository extends AbstractRepository<Task> {
         String sql = "INSERT INTO Tasks (title, description) VALUES (?, ?)";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
             preparedStatement.setString(1, entity.getTitle());
             preparedStatement.setString(2, entity.getDescription());
-
             preparedStatement.execute();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

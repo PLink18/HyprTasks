@@ -1,13 +1,18 @@
 package pll.desktop.hyprtasks.models;
 
-public class Project {
+public class Project implements Entity {
     private int id;
-    private String name;
+    private String title;
     private String description;
 
-    public Project(int id, String name, String description) {
+    public Project(int id, String title, String description) {
         this.id = id;
-        this.name = name;
+        this.title = title;
+        this.description = description;
+    }
+
+    public Project(String title, String description) {
+        this.title = title;
         this.description = description;
     }
 
@@ -19,12 +24,12 @@ public class Project {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public String getDescription() {
@@ -33,5 +38,12 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return "Project:" + id +
+                "\nTitle: " + title +
+                "\nDescription: " + description;
     }
 }

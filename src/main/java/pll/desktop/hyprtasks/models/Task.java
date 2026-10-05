@@ -2,7 +2,7 @@ package pll.desktop.hyprtasks.models;
 
 import java.util.Date;
 
-public class Task {
+public class Task implements Entity {
 
     private int id;
     private String title;

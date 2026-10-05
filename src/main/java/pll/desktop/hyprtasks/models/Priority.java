@@ -1,6 +1,6 @@
 package pll.desktop.hyprtasks.models;
 
-public class Priority {
+public class Priority implements Entity {
 
     private int id;
     private String name;

@@ -1,6 +1,6 @@
 package pll.desktop.hyprtasks.models;
 
-public class Status {
+public class Status implements Entity {
 
     private int id;
     private String name;
