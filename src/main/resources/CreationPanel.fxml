@@ -8,11 +8,23 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="addTaskPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="add-task-panel" visible="false" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pll.desktop.hyprtasks.CreationController">
+<VBox fx:id="addTaskPanel"
+      maxHeight="-Infinity"
+      maxWidth="-Infinity"
+      minHeight="-Infinity"
+      minWidth="-Infinity"
+      prefHeight="400.0"
+      prefWidth="600.0"
+      stylesheets="styles.css"
+      visible="false"
+      xmlns="http://javafx.com/javafx/26"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="pll.desktop.hyprtasks.CreationController">
+
    <children>
       <Label text="Label" />
-      <TextField />
-      <TextArea prefHeight="200.0" prefWidth="200.0" />
+      <TextField fx:id="titleField"/>
+      <TextArea fx:id="descriptionField" prefHeight="200.0" prefWidth="200.0" />
       <HBox prefHeight="100.0" prefWidth="200.0">
          <children>
             <ComboBox prefWidth="150.0" />
@@ -22,7 +34,7 @@
       </HBox>
       <HBox layoutX="10.0" layoutY="254.0" prefHeight="100.0" prefWidth="200.0">
          <children>
-            <Button mnemonicParsing="false" text="Сохранить" />
+            <Button mnemonicParsing="false" onAction="#createTask" text="Сохранить" />
             <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#closePanel" text="Отмена" />
          </children>
       </HBox>
