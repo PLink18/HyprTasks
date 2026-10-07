@@ -15,7 +15,7 @@ public class CreationController {
     public TextArea descriptionField;
 
     public void createTask() {
-        if (isFieldsNotNull()) {
+        if (!isFieldsEmpty()) {
             String title = pullText(titleField);
             String description = pullText(descriptionField);
             Task task = createTask(title, description);
@@ -24,8 +24,8 @@ public class CreationController {
         closePanel();
     }
 
-    private boolean isFieldsNotNull() {
-        return titleField != null && descriptionField != null;
+    private boolean isFieldsEmpty() {
+        return titleField.getText().isEmpty() && descriptionField.getText().isEmpty();
     }
 
     private String pullText(TextInputControl source) {
