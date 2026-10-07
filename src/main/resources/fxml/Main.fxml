@@ -17,6 +17,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -83,9 +84,13 @@
   <left>
     <VBox fx:id="navigation" maxWidth="260" minWidth="64" prefWidth="200" spacing="4">
       <children>
-        <ToggleButton fx:id="profileButton" maxWidth="Infinity" text="Профиль" />
-        <ToggleButton fx:id="tasksButton" maxWidth="Infinity" selected="true" text="Задачи" />
-        <ToggleButton fx:id="notesButton" maxWidth="Infinity" text="Заметки" />
+        <ToggleButton fx:id="profileButton" maxWidth="Infinity" onAction="#relocate" text="Профиль">
+               <toggleGroup>
+                  <ToggleGroup fx:id="navGroup" />
+               </toggleGroup>
+        </ToggleButton>
+        <ToggleButton fx:id="tasksButton" maxWidth="Infinity" selected="true" onAction="#relocate" text="Задачи" toggleGroup="$navGroup" />
+        <ToggleButton fx:id="notesButton" maxWidth="Infinity" text="Заметки" onAction="#relocate" toggleGroup="$navGroup" />
         <Region VBox.vgrow="ALWAYS" />
         <Separator />
         <Button maxWidth="Infinity" text="Настройки" />
@@ -104,7 +109,7 @@
                </children>
         </VBox>
 
-        <TabPane fx:id="mainTabs" tabClosingPolicy="UNAVAILABLE">
+        <TabPane fx:id="tasksView" tabClosingPolicy="UNAVAILABLE">
           <tabs>
 
             <Tab text="Kanban">
