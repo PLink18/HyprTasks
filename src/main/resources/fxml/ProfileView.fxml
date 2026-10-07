@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+
+<VBox managed="false" spacing="16" visible="false" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" >
+ <children>
+   <Label minWidth="-Infinity" text="Профиль" />
+ </children>
+</VBox>
