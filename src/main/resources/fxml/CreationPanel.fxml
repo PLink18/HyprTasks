@@ -19,7 +19,7 @@
       visible="false"
       xmlns="http://javafx.com/javafx/26"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="pll.desktop.hyprtasks.CreationController">
+      fx:controller="pll.desktop.hyprtasks.controllers.CreationController">
 
    <children>
       <Label text="Label" />

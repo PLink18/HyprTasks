@@ -2,7 +2,7 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pll.desktop.hyprtasks.MainController">
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pll.desktop.hyprtasks.controllers.MainController">
   <top>
     <VBox>
       <MenuBar>
@@ -58,31 +58,16 @@
   </top>
 
   <left>
-    <VBox fx:id="navigation" maxWidth="260" minWidth="64" prefWidth="200" spacing="4">
-      <children>
-        <ToggleButton fx:id="profileButton" maxWidth="Infinity" onAction="#relocate" text="Профиль">
-               <toggleGroup>
-                  <ToggleGroup fx:id="navGroup" />
-               </toggleGroup>
-        </ToggleButton>
-        <ToggleButton fx:id="tasksButton" maxWidth="Infinity" onAction="#relocate" selected="true" text="Задачи" toggleGroup="$navGroup" />
-        <ToggleButton fx:id="notesButton" maxWidth="Infinity" onAction="#relocate" text="Заметки" toggleGroup="$navGroup" />
-        <Region VBox.vgrow="ALWAYS" />
-        <Separator />
-        <Button maxWidth="Infinity" text="Настройки" />
-      </children>
-    </VBox>
+    <fx:include fx:id="navigation" source="Navigation.fxml" />
   </left>
 
   <center>
     <StackPane fx:id="contentArea">
       <children>
-
         <fx:include fx:id="notesView" source="NotesView.fxml" />
         <fx:include fx:id="tasksView" source="TasksView.fxml" />
         <fx:include fx:id="profileView" source="ProfileView.fxml" />
         <fx:include fx:id="addTaskPanel" source="CreationPanel.fxml" StackPane.alignment="TOP_RIGHT" />
-
       </children>
     </StackPane>
   </center>

@@ -1,8 +1,7 @@
-package pll.desktop.hyprtasks;
+package pll.desktop.hyprtasks.controllers;
 
-import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.TabPane;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.VBox;
 
 public class MainController {
@@ -13,13 +12,16 @@ public class MainController {
     public TabPane tasksView;
     public VBox profileView;
 
-    public void openAddTaskPanel() {
-        addTaskPanel.setVisible(!addTaskPanel.isVisible());
+    @FXML
+    private NavigationController navigationController;
+
+    @FXML
+    private void initialize() {
+        navigationController.setOnViewChanged(this::switchView);
     }
 
-    public void relocate(ActionEvent event) {
-        ToggleButton button = (ToggleButton) event.getSource();
-        switchView(button.getId());
+    public void openAddTaskPanel() {
+        addTaskPanel.setVisible(!addTaskPanel.isVisible());
     }
 
     private void switchView(String buttonId) {
