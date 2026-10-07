@@ -12,7 +12,7 @@ public class ConnectionHelper {
     public static Connection getConnection() throws SQLException {
         Properties properties = new Properties();
 
-        try (InputStream in = ConnectionHelper.class.getResourceAsStream("/db.properties")) {
+        try (InputStream in = ConnectionHelper.class.getResourceAsStream("/properties/db.properties")) {
             properties.load(in);
         } catch (IOException e) {
             throw new RuntimeException(e);

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pll.desktop.hyprtasks.controllers.MainController">
+  <top>
+    <VBox>
+      <MenuBar>
+        <menus>
+          <Menu text="File">
+            <items>
+              <MenuItem accelerator="Shortcut+N" onAction="#openAddTaskPanel" text="New Task" />
+              <MenuItem accelerator="Shortcut+O" text="Open" />
+              <MenuItem accelerator="Shortcut+S" text="Save" />
+              <SeparatorMenuItem />
+              <MenuItem accelerator="Shortcut+Q" text="Close" />
+            </items>
+          </Menu>
+          <Menu text="Edit">
+            <items>
+              <MenuItem accelerator="Shortcut+Z" text="Undo" />
+              <MenuItem accelerator="Shortcut+Shift+Z" text="Redo" />
+              <SeparatorMenuItem />
+              <MenuItem accelerator="Shortcut+C" text="Copy" />
+              <MenuItem accelerator="Shortcut+V" text="Paste" />
+              <SeparatorMenuItem />
+              <MenuItem accelerator="Delete" text="Delete" />
+            </items>
+          </Menu>
+          <Menu text="View">
+            <items>
+              <MenuItem text="Kanban" />
+              <MenuItem text="Table" />
+              <MenuItem text="Calendar" />
+            </items>
+          </Menu>
+          <Menu text="Help">
+            <items>
+              <MenuItem text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+
+      <ToolBar>
+        <items>
+          <TextField fx:id="searchField" prefWidth="320" promptText="Поиск задач..." />
+          <Button text="Фильтры" />
+          <ComboBox prefWidth="150" promptText="Приоритет" />
+          <CheckBox mnemonicParsing="false" text="Только мои" />
+          <Separator orientation="VERTICAL" />
+          <Button defaultButton="true" onAction="#openAddTaskPanel" text="+ Задача" />
+          <Region HBox.hgrow="ALWAYS" />
+          <Button text="Обновить" />
+        </items>
+      </ToolBar>
+    </VBox>
+  </top>
+
+  <left>
+    <fx:include fx:id="navigation" source="Navigation.fxml" />
+  </left>
+
+  <center>
+    <StackPane fx:id="contentArea">
+      <children>
+        <fx:include fx:id="notesView" source="NotesView.fxml" />
+        <fx:include fx:id="tasksView" source="TasksView.fxml" />
+        <fx:include fx:id="profileView" source="ProfileView.fxml" />
+        <fx:include fx:id="addTaskPanel" source="CreationPanel.fxml" StackPane.alignment="TOP_RIGHT" />
+      </children>
+    </StackPane>
+  </center>
+
+  <bottom>
+    <HBox alignment="CENTER_LEFT" spacing="12">
+      <children>
+        <Label fx:id="statusLabel" text="Готово" />
+        <Separator orientation="VERTICAL" />
+        <Label text="Проект: HyprTasks" />
+        <Region HBox.hgrow="ALWAYS" />
+        <Label fx:id="tasksCounter" text="Задач: 0" />
+      </children>
+    </HBox>
+  </bottom>
+</BorderPane>

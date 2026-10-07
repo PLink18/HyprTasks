@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+
+<TabPane tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" >
+ <tabs>
+
+   <Tab text="Kanban">
+     <content>
+       <HBox spacing="8">
+         <children>
+
+           <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="220.0" text="Todo" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+             <content>
+               <VBox spacing="8">
+                 <children>
+                   <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                     <content>
+                       <VBox spacing="8" />
+                     </content>
+                   </ScrollPane>
+                 </children>
+               </VBox>
+             </content>
+           </TitledPane>
+
+           <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="220.0" text="In progress" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+             <content>
+               <VBox spacing="8">
+                 <children>
+                   <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                     <content>
+                       <VBox spacing="8" />
+                     </content>
+                   </ScrollPane>
+                 </children>
+               </VBox>
+             </content>
+           </TitledPane>
+
+           <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="220.0" text="On review" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+             <content>
+               <VBox spacing="8">
+                 <children>
+                   <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                     <content>
+                       <VBox spacing="8" />
+                     </content>
+                   </ScrollPane>
+                 </children>
+               </VBox>
+             </content>
+           </TitledPane>
+
+           <TitledPane alignment="CENTER" collapsible="false" maxHeight="1.7976931348623157E308" prefWidth="220.0" text="Done" textAlignment="CENTER" HBox.hgrow="ALWAYS">
+             <content>
+               <VBox spacing="8">
+                 <children>
+                   <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
+                     <content>
+                       <VBox spacing="8" />
+                     </content>
+                   </ScrollPane>
+                 </children>
+               </VBox>
+             </content>
+           </TitledPane>
+
+         </children>
+       </HBox>
+     </content>
+   </Tab>
+
+   <Tab text="Table">
+     <content>
+       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+         <children>
+           <TableView editable="true" tableMenuButtonVisible="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+             <columns>
+               <TableColumn prefWidth="70.0" text="ID" />
+               <TableColumn prefWidth="260.0" text="Name" />
+               <TableColumn prefWidth="110.0" text="Priority" />
+               <TableColumn prefWidth="130.0" text="Status" />
+               <TableColumn prefWidth="120.0" text="Due Date" />
+               <TableColumn prefWidth="150.0" text="Assignee" />
+               <TableColumn prefWidth="120.0" text="Tags" />
+             </columns>
+           </TableView>
+         </children>
+       </AnchorPane>
+     </content>
+   </Tab>
+
+ </tabs>
+</TabPane>
