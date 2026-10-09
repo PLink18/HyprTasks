@@ -43,5 +43,4 @@ bin/
 .DS_Store
 data/HyprTasks.trace.db
 data/HyprTasks.mv.db
-src/test/resources/properties/db.properties
 *.properties
