@@ -23,8 +23,8 @@ public class RepositoryTest {
 
     @Test
     public void testFindByID() {
-        assertEquals(1, Repository.tasks().findById(1).getId());
-        assertEquals(1, Repository.projects().findById(1).getId());
+        assertEquals(2, Repository.tasks().findById(2).getId());
+        assertEquals(2, Repository.projects().findById(2).getId());
     }
 
     @Test
