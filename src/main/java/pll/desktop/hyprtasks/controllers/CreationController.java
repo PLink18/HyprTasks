@@ -1,4 +1,4 @@
-package pll.desktop.hyprtasks;
+package pll.desktop.hyprtasks.controllers;
 
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;

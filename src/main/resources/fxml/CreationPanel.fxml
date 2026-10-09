@@ -15,11 +15,11 @@
       minWidth="-Infinity"
       prefHeight="400.0"
       prefWidth="600.0"
-      stylesheets="styles.css"
+      stylesheets="/styles/styles.css"
       visible="false"
       xmlns="http://javafx.com/javafx/26"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="pll.desktop.hyprtasks.CreationController">
+      fx:controller="pll.desktop.hyprtasks.controllers.CreationController">
 
    <children>
       <Label text="Label" />

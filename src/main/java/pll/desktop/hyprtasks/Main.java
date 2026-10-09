@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    final String MAIN_MARKUP = "/Main.fxml";
+    final String MAIN_MARKUP = "/fxml/Main.fxml";
 
     public static void main(String[] args) {
 
