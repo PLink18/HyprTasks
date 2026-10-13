@@ -5,16 +5,16 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" spacing="6">
+<fx:root type="javafx.scene.layout.VBox" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" spacing="6" >
    <children>
-      <Label text="Название задачи" wrapText="true" />
-      <Label text="Описание задачи" wrapText="true" />
+      <Label fx:id="title" text="Название задачи" wrapText="true" />
+      <Label fx:id="description" text="Описание задачи" wrapText="true" />
       <HBox alignment="CENTER_LEFT" spacing="6">
          <children>
-            <Label text="High" />
+            <Label fx:id="priority" text="High" />
             <Region HBox.hgrow="ALWAYS" />
-            <Label text="12.05" />
+            <Label fx:id="deadline" text="12.05" />
          </children>
       </HBox>
    </children>
-</VBox>
+</fx:root>

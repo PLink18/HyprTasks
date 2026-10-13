@@ -6,26 +6,29 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.VBox;
 import pll.desktop.hyprtasks.models.Task;
 import pll.desktop.hyprtasks.repositories.Repository;
+import pll.desktop.hyprtasks.repositories.TasksRepository;
 
-public class CreationController {
+public class TasksController {
 
     public VBox addTaskPanel;
 
     public TextField titleField;
     public TextArea descriptionField;
 
+    public VBox todo;
+
     public void createTask() {
-        if (!isFieldsEmpty()) {
+        if (!isTitleEmpty()) {
             String title = pullText(titleField);
             String description = pullText(descriptionField);
             Task task = createTask(title, description);
             Repository.tasks().save(task);
         }
-        closePanel();
+        closeCreationPanel();
     }
 
-    private boolean isFieldsEmpty() {
-        return titleField.getText().isEmpty() && descriptionField.getText().isEmpty();
+    private boolean isTitleEmpty() {
+        return titleField.getText().isEmpty();
     }
 
     private String pullText(TextInputControl source) {
@@ -38,7 +41,15 @@ public class CreationController {
         return new Task(title, description);
     }
 
-    public void closePanel() {
+    public void closeCreationPanel() {
         addTaskPanel.setVisible(false);
+    }
+
+    public void reloadTasks() {
+        todo.getChildren().clear();
+        for (Task task : TasksRepository.tasks().findAll()) {
+            TaskCardController taskCard = new TaskCardController(task);
+            todo.getChildren().add(taskCard);
+        }
     }
 }
