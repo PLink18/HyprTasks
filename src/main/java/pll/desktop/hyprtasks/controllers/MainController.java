@@ -8,16 +8,20 @@ public class MainController {
 
     public VBox addTaskPanel;
 
-    public VBox notesView;
-    public TabPane tasksView;
-    public VBox profileView;
+    public VBox notes;
+    public VBox profile;
+    public TabPane tasks;
 
     @FXML
     private NavigationController navigationController;
 
     @FXML
+    private TasksController tasksController;
+
+    @FXML
     private void initialize() {
         navigationController.setOnViewChanged(this::switchView);
+        reloadTasks();
     }
 
     public void openAddTaskPanel() {
@@ -27,20 +31,24 @@ public class MainController {
     private void switchView(String buttonId) {
         switch (buttonId) {
             case "notesButton":
-                notesView.setVisible(true);
-                tasksView.setVisible(false);
-                profileView.setVisible(false);
+                notes.setVisible(true);
+                tasks.setVisible(false);
+                profile.setVisible(false);
                 break;
             case "tasksButton":
-                notesView.setVisible(false);
-                tasksView.setVisible(true);
-                profileView.setVisible(false);
+                notes.setVisible(false);
+                tasks.setVisible(true);
+                profile.setVisible(false);
                 break;
             case "profileButton":
-                notesView.setVisible(false);
-                tasksView.setVisible(false);
-                profileView.setVisible(true);
+                notes.setVisible(false);
+                tasks.setVisible(false);
+                profile.setVisible(true);
                 break;
         }
+    }
+
+    public void reloadTasks() {
+        tasksController.reloadTasks();
     }
 }
