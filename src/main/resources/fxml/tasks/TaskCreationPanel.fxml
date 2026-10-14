@@ -19,7 +19,7 @@
       visible="false"
       xmlns="http://javafx.com/javafx/26"
       xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="pll.desktop.hyprtasks.controllers.TasksController">
+      fx:controller="pll.desktop.hyprtasks.controllers.CreationController">
 
    <children>
       <Label text="Label" />
@@ -35,7 +35,7 @@
       <HBox layoutX="10.0" layoutY="254.0" prefHeight="100.0" prefWidth="200.0">
          <children>
             <Button mnemonicParsing="false" onAction="#createTask" text="Сохранить" />
-            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#closeCreationPanel" text="Отмена" />
+            <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#closePanel" text="Отмена" />
          </children>
       </HBox>
    </children>

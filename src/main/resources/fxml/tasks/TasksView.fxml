@@ -24,7 +24,7 @@
                  <children>
                    <ScrollPane fitToWidth="true" VBox.vgrow="ALWAYS">
                      <content>
-                        <VBox fx:id="todo" prefHeight="200.0" prefWidth="100.0">
+                        <VBox fx:id="todoSection" prefHeight="200.0" prefWidth="100.0">
                           <children>
 
                           </children>

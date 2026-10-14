@@ -9,7 +9,7 @@ import pll.desktop.hyprtasks.models.Task;
 import java.io.IOException;
 public class TaskCardController extends VBox {
 
-    private static final String TASK_CARD_PATH = "/fxml/TaskCard.fxml";
+    private static final String TASK_CARD_PATH = "/fxml/tasks/TaskCard.fxml";
 
     @FXML private Label title;
     @FXML private Label description;

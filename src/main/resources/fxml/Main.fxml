@@ -65,10 +65,12 @@
   <center>
     <StackPane fx:id="contentArea">
       <children>
-        <fx:include fx:id="notes" source="NotesView.fxml" />
-        <fx:include fx:id="tasks" source="TasksView.fxml" />
-        <fx:include fx:id="profile" source="ProfileView.fxml" />
-        <fx:include fx:id="addTaskPanel" source="CreationPanel.fxml" StackPane.alignment="TOP_RIGHT" />
+        <fx:include fx:id="notes" source="notes/NotesView.fxml" />
+        <fx:include fx:id="tasks" source="tasks/TasksView.fxml" />
+        <fx:include fx:id="profile" source="profile/ProfileView.fxml" />
+        <fx:include fx:id="addTaskPanel" source="tasks/TaskCreationPanel.fxml" StackPane.alignment="TOP_RIGHT" />
+        <fx:include fx:id="updateTaskPanel" source="tasks/TaskUpdatePanel.fxml" StackPane.alignment="TOP_RIGHT" />
+
       </children>
     </StackPane>
   </center>
