@@ -6,7 +6,8 @@ import javafx.scene.layout.VBox;
 
 public class MainController {
 
-    public VBox addTaskPanel;
+    public VBox taskCreationPanel;
+    public VBox taskOverviewPanel;
 
     public VBox notes;
     public VBox profile;
@@ -24,8 +25,11 @@ public class MainController {
         reloadTasks();
     }
 
-    public void openAddTaskPanel() {
-        addTaskPanel.setVisible(!addTaskPanel.isVisible());
+    public void openTaskCreationPanel() {
+        taskCreationPanel.setVisible(!taskCreationPanel.isVisible());
+    }
+    public void openTaskOverviewPanel() {
+        taskOverviewPanel.setVisible(!taskOverviewPanel.isVisible());
     }
 
     private void switchView(String buttonId) {
