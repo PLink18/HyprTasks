@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox fx:id="moreInfoPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="/styles/styles.css" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pll.desktop.hyprtasks.controllers.TaskOverviewController">
+
+   <children>
+      <HBox>
+         <children>
+            <Label fx:id="title" minWidth="-Infinity" text="Title" />
+            <Button minWidth="-Infinity" mnemonicParsing="false" text="Edit" />
+            <Region prefHeight="0.0" prefWidth="1188.0" />
+            <Button minWidth="-Infinity" mnemonicParsing="false" onAction="#closePanel" text="Exit" />
+         </children>
+      </HBox>
+      <TextArea fx:id="descriptionField" editable="false" prefHeight="200.0" prefWidth="200.0" promptText="Description" />
+      <HBox layoutX="10.0" layoutY="254.0" prefHeight="100.0" prefWidth="200.0">
+         <children>
+            <Button mnemonicParsing="false" text="Сохранить" />
+         </children>
+      </HBox>
+   </children>
+</VBox>
