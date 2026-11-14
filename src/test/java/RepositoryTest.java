@@ -1,16 +1,58 @@
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
+import pll.desktop.hyprtasks.models.Entity;
 import pll.desktop.hyprtasks.models.Project;
 import pll.desktop.hyprtasks.models.Task;
 import pll.desktop.hyprtasks.models.User;
+import pll.desktop.hyprtasks.models.references.Priority;
+import pll.desktop.hyprtasks.models.references.Role;
+import pll.desktop.hyprtasks.models.references.Status;
+import pll.desktop.hyprtasks.models.references.Tag;
 import pll.desktop.hyprtasks.repositories.Repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RepositoryTest {
+
+    static Stream<Arguments> provideRepositoriesAndEntities() {
+        return Stream.of(
+                Arguments.of(
+                        new Task("TEST_TASK", "TASK FOR TEST"),
+                        Repository.tasks()
+                ),
+                Arguments.of(
+                        new Project("TEST_PROJECT", "PROJECT FOR TEST"),
+                        Repository.projects()
+                ),
+                Arguments.of(
+                        new User("TEST_USER", "PASSWORD", "EMAIL"),
+                        Repository.users()
+                ),
+                Arguments.of(
+                        new Priority("TEST_PRIORITY"),
+                        Repository.priorities()
+                ),
+                Arguments.of(
+                        new Role("TEST_ROLE"),
+                        Repository.roles()
+                ),
+                Arguments.of(
+                        new Status("TEST_STATUS"),
+                        Repository.statuses()
+                ),
+                Arguments.of(
+                        new Tag("TEST_TAG"),
+                        Repository.tags()
+                )
+        );
+    }
 
     @Test
     public void testConnection() {
@@ -45,78 +87,35 @@ public class RepositoryTest {
         assertNotNull(Repository.users().findAll());
     }
 
-    @Test
-    public void testFindLastRecord() {
-        Task task = new Task("LAST", "This is last record");
-        Repository.tasks().save(task);
-        assertEquals(task.getTitle(), Repository.tasks().findLast().getTitle());
-
-        Project project = new Project("LAST", "This is last project");
-        Repository.projects().save(project);
-        assertEquals(project.getTitle(), Repository.projects().findLast().getTitle());
-
-        User user = new User("LAST", "12345678", "lastuser@gmail.com");
-        Repository.users().save(user);
-        assertEquals(user.getUsername(), Repository.users().findLast().getUsername());
+    @ParameterizedTest
+    @MethodSource("provideRepositoriesAndEntities")
+    public void testFindLastRecord(Entity entity, Repository<Entity> repository) {
+        repository.save(entity);
+        assertEquals(entity.toStringWithoutId(), repository.findLast().toStringWithoutId());
     }
 
-    @Test
-    public void testSaveRecords() {
-        Task oldLastTask = Repository.tasks().findLast();
-        Task task = new Task("Test task", "Task for test");
-        Repository.tasks().save(task);
-
-        assertNotEquals(oldLastTask, Repository.tasks().findLast());
-
-        Project oldLastProject = Repository.projects().findLast();
-        Project project = new Project("Test project", "Project for test");
-        Repository.projects().save(project);
-
-        assertNotEquals(oldLastProject, Repository.projects().findLast());
-
-        User oldLastUser = Repository.users().findLast();
-        User user = new User("newLastUser", "1111", "imnewlastuser@vot.ru");
-        Repository.users().save(user);
-
-        assertNotEquals(oldLastUser, Repository.users().findLast());
+    @ParameterizedTest
+    @MethodSource("provideRepositoriesAndEntities")
+    public void testSaveRecords(Entity entity, Repository<Entity> repository) {
+        Entity oldEntity = repository.findLast();
+        repository.save(entity);
+        assertNotEquals(oldEntity.toString(), repository.findLast().toString());
     }
 
-    @Test
-    public void testUpdateRecord() {
-        int id;
-        id = Repository.tasks().findLast().getId();
-        Task task = new Task(id, "Update", "Updated task");
-        Repository.tasks().update(task);
-
-        assertEquals(task.toString(), Repository.tasks().findLast().toString());
-
-        id = Repository.projects().findLast().getId();
-        Project project = new Project(id, "Update", "Updated project");
-        Repository.projects().update(project);
-
-        assertEquals(project.toString(), Repository.projects().findLast().toString());
-
-        id = Repository.users().findLast().getId();
-        User user = new User(id, "updatedUser", "coolPassword", "imupdated@da.su");
-        Repository.users().update(user);
-
-        assertEquals(user.toString(), Repository.users().findLast().toString());
+    @ParameterizedTest
+    @MethodSource("provideRepositoriesAndEntities")
+    public void testUpdateRecord(Entity entity, Repository<Entity> repository) {
+        int id = repository.findLast().getId();
+        entity.setId(id);
+        repository.update(entity);
+        assertEquals(entity.toString(), repository.findLast().toString());
     }
 
-    @Test
-    public void testDeleteById() {
-        int id;
-
-        id = Repository.tasks().findLast().getId();
-        Repository.tasks().delete(id);
+    @ParameterizedTest
+    @MethodSource("provideRepositoriesAndEntities")
+    public void testDeleteById(Entity entity, Repository<Entity> repository) {
+        int id = repository.findLast().getId();
+        repository.delete(id);
         assertNotEquals(id, Repository.tasks().findLast().getId());
-
-        id = Repository.projects().findLast().getId();
-        Repository.projects().delete(id);
-        assertNotEquals(id, Repository.projects().findLast().getId());
-
-        id = Repository.users().findLast().getId();
-        Repository.users().delete(id);
-        assertNotEquals(id, Repository.users().findLast().getId());
     }
 }
