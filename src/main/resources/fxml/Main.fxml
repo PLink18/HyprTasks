@@ -2,14 +2,14 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pll.desktop.hyprtasks.controllers.MainController">
+<BorderPane fx:id="root" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pll.desktop.hyprtasks.controllers.MainController" stylesheets="/styles/styles.css">
   <top>
     <VBox>
       <MenuBar>
         <menus>
           <Menu text="File">
             <items>
-              <MenuItem accelerator="Shortcut+N" onAction="#openAddTaskPanel" text="New Task" />
+              <MenuItem accelerator="Shortcut+N" onAction="#openTaskCreationPanel" text="New Task" />
               <MenuItem accelerator="Shortcut+R" onAction="#reloadTasks" text="Reload Tasks" />
               <MenuItem accelerator="Shortcut+O" text="Open" />
               <MenuItem accelerator="Shortcut+S" text="Save" />
@@ -50,7 +50,7 @@
           <ComboBox prefWidth="150" promptText="Приоритет" />
           <CheckBox mnemonicParsing="false" text="Только мои" />
           <Separator orientation="VERTICAL" />
-          <Button defaultButton="true" onAction="#openAddTaskPanel" text="+ Задача" />
+          <Button defaultButton="true" onAction="#openTaskCreationPanel" text="+ Задача" />
           <Region HBox.hgrow="ALWAYS" />
           <Button text="Обновить" />
         </items>
@@ -68,7 +68,8 @@
         <fx:include fx:id="notes" source="NotesView.fxml" />
         <fx:include fx:id="tasks" source="TasksView.fxml" />
         <fx:include fx:id="profile" source="ProfileView.fxml" />
-        <fx:include fx:id="addTaskPanel" source="CreationPanel.fxml" StackPane.alignment="TOP_RIGHT" />
+        <fx:include fx:id="taskCreationPanel" source="CreationPanel.fxml" StackPane.alignment="TOP_RIGHT" />
+        <fx:include fx:id="taskOverviewPanel" source="TaskOverviewPanel.fxml" StackPane.alignment="TOP_RIGHT" />
       </children>
     </StackPane>
   </center>

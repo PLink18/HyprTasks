@@ -1,12 +1,15 @@
 package pll.desktop.hyprtasks.controllers;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import pll.desktop.hyprtasks.models.Task;
 
 import java.io.IOException;
+
 public class TaskCardController extends VBox {
 
     private static final String TASK_CARD_PATH = "/fxml/TaskCard.fxml";
@@ -31,5 +34,15 @@ public class TaskCardController extends VBox {
         description.setText(task.getDescription());
         priority.setText(String.valueOf(task.getPriority()));
         deadline.setText(String.valueOf(task.getDeadline()));
+
+        title.setOnMouseClicked(onTitleClicked());
+    }
+
+    private EventHandler<MouseEvent> onTitleClicked() {
+        return this::openMoreInfo;
+    }
+
+    private void openMoreInfo(MouseEvent event) {
+        
     }
 }

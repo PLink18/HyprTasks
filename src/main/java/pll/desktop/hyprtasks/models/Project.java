@@ -1,6 +1,7 @@
 package pll.desktop.hyprtasks.models;
 
 public class Project implements Entity {
+
     private int id;
     private String title;
     private String description;
