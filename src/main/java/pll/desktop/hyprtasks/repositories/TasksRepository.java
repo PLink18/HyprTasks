@@ -32,11 +32,11 @@ public class TasksRepository extends Repository<Task> {
     public void update(Task entity) {
         String sql = "UPDATE " + tableName() + " SET title = ?, description = ? WHERE id = ?";
         try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, entity.getTitle());
-            statement.setString(2, entity.getDescription());
-            statement.setInt(3, entity.getId());
-            statement.execute();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, entity.getTitle());
+            preparedStatement.setString(2, entity.getDescription());
+            preparedStatement.setInt(3, entity.getId());
+            preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

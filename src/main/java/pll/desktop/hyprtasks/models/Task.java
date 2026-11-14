@@ -111,8 +111,11 @@ public class Task implements Entity {
 
     @Override
     public String toString() {
-        return "Task:" + id +
-                "\nTitle: " + title +
-                "\nDescription: " + description;
+        return "Task{id=" + id + ", title=" + title + ", description=" + description + "}";
+    }
+
+    @Override
+    public String toStringWithoutId() {
+        return "Task{title=" + title + ", description=" + description + "}";
     }
 }

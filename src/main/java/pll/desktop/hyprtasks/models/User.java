@@ -54,9 +54,11 @@ public class User implements Entity {
 
     @Override
     public String toString() {
-        return "User:" + id +
-                "\nUsername: " + username +
-                "\nPassword: " + password +
-                "\nEmail: " + email;
+        return "User{id=" + id + ", username=" + username + ", password=" + password + ", email="+ email + "}";
+    }
+
+    @Override
+    public String toStringWithoutId() {
+        return "User{username=" + username + ", password=" + password + ", email="+ email + "}";
     }
 }

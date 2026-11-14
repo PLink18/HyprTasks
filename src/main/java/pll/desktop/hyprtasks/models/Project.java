@@ -54,8 +54,11 @@ public class Project implements Entity {
 
     @Override
     public String toString() {
-        return "Project:" + id +
-                "\nTitle: " + title +
-                "\nDescription: " + description;
+        return "Project{id=" + id + ", title=" + title + ", description=" + description + "}";
+    }
+
+    @Override
+    public String toStringWithoutId() {
+        return "Project{title=" + title + ", description=" + description + "}";
     }
 }
