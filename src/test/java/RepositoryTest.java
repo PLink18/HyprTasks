@@ -3,10 +3,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
-import pll.desktop.hyprtasks.models.Entity;
-import pll.desktop.hyprtasks.models.Project;
-import pll.desktop.hyprtasks.models.Task;
-import pll.desktop.hyprtasks.models.User;
+import pll.desktop.hyprtasks.models.*;
 import pll.desktop.hyprtasks.models.references.Priority;
 import pll.desktop.hyprtasks.models.references.Role;
 import pll.desktop.hyprtasks.models.references.Status;
@@ -50,6 +47,14 @@ public class RepositoryTest {
                 Arguments.of(
                         new Tag("TEST_TAG"),
                         Repository.tags()
+                ),
+                Arguments.of(
+                        new Note("TEST_NOTE", "NOTE FOR TEST"),
+                        Repository.notes()
+                ),
+                Arguments.of(
+                        new ProjectMember(1, 1, 1),
+                        Repository.projectMembers()
                 )
         );
     }
@@ -116,6 +121,6 @@ public class RepositoryTest {
     public void testDeleteById(Entity entity, Repository<Entity> repository) {
         int id = repository.findLast().getId();
         repository.delete(id);
-        assertNotEquals(id, Repository.tasks().findLast().getId());
+        assertNull(repository.findById(id));
     }
 }

@@ -38,6 +38,12 @@ public abstract class Repository<T> implements CrudRepository<T>{
     public static TagsRepository tags() {
         return new TagsRepository();
     }
+    public static NotesRepository notes() {
+        return new NotesRepository();
+    }
+    public static ProjectMembersRepository projectMembers() {
+        return new ProjectMembersRepository();
+    }
 
 
     @Override
