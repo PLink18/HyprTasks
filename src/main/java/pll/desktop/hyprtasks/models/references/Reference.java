@@ -7,6 +7,15 @@ public abstract class Reference implements Entity {
     protected int id;
     protected String name;
 
+    public Reference(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Reference(String name) {
+        this.name = name;
+    }
+
     public int getId() {
         return id;
     }
@@ -21,5 +30,10 @@ public abstract class Reference implements Entity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toStringWithoutId() {
+        return "Reference{name="+ name + "}";
     }
 }
