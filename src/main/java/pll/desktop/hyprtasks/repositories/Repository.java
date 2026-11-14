@@ -1,6 +1,10 @@
 package pll.desktop.hyprtasks.repositories;
 
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
+import pll.desktop.hyprtasks.repositories.references.PrioritiesRepository;
+import pll.desktop.hyprtasks.repositories.references.RolesRepository;
+import pll.desktop.hyprtasks.repositories.references.StatusesRepository;
+import pll.desktop.hyprtasks.repositories.references.TagsRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,6 +26,19 @@ public abstract class Repository<T> implements CrudRepository<T>{
     public static UsersRepository users() {
         return new UsersRepository();
     }
+    public static PrioritiesRepository priorities() {
+        return new PrioritiesRepository();
+    }
+    public static RolesRepository roles() {
+        return new RolesRepository();
+    }
+    public static StatusesRepository statuses() {
+        return new StatusesRepository();
+    }
+    public static TagsRepository tags() {
+        return new TagsRepository();
+    }
+
 
     @Override
     public T findById(int id) {
