@@ -1,10 +1,13 @@
 package pll.desktop.hyprtasks.models;
 
+import java.util.List;
+
 public class Project implements Entity {
 
     private int id;
     private String title;
     private String description;
+    private List<Task> tasks;
 
     public Project(int id, String title, String description) {
         this.id = id;
@@ -39,6 +42,14 @@ public class Project implements Entity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     @Override

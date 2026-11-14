@@ -18,7 +18,6 @@ public abstract class Repository<T> implements CrudRepository<T>{
     public static TasksRepository tasks() {
         return new TasksRepository();
     }
-
     public static ProjectsRepository projects() {
         return new ProjectsRepository();
     }
