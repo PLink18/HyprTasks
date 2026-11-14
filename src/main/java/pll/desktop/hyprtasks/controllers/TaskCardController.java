@@ -33,7 +33,7 @@ public class TaskCardController extends VBox {
         title.setText(task.getTitle());
         description.setText(task.getDescription());
         priority.setText(String.valueOf(task.getPriority()));
-        deadline.setText(String.valueOf(task.getDeadline()));
+        deadline.setText(String.valueOf(task.getCreationDate()));
 
         title.setOnMouseClicked(onTitleClicked());
     }

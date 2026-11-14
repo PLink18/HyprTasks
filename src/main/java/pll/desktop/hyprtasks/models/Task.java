@@ -1,16 +1,22 @@
 package pll.desktop.hyprtasks.models;
 
+import pll.desktop.hyprtasks.models.references.Tag;
+
 import java.util.Date;
+import java.util.List;
 
 public class Task implements Entity {
 
     private int id;
     private String title;
     private String description;
-    private Date deadline;
-    private Priority priority;
-    private Status status;
-    private Project project;
+    private int priority;
+    private int status;
+    private int project;
+    private Date creationDate;
+    private Date updateDate;
+    private Date closingDate;
+    private List<Tag> tags;
 
     public Task(int id, String title, String description) {
         this.id = id;
@@ -47,36 +53,60 @@ public class Task implements Entity {
         this.description = description;
     }
 
-    public Date getDeadline() {
-        return deadline;
-    }
-
-    public void setDeadline(Date deadline) {
-        this.deadline = deadline;
-    }
-
-    public Priority getPriority() {
+    public int getPriority() {
         return priority;
     }
 
-    public void setPriority(Priority priority) {
+    public void setPriority(int priority) {
         this.priority = priority;
     }
 
-    public Status getStatus() {
+    public int getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(int status) {
         this.status = status;
     }
 
-    public Project getProject() {
+    public int getProject() {
         return project;
     }
 
-    public void setProject(Project project) {
+    public void setProject(int project) {
         this.project = project;
+    }
+
+    public Date getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(Date creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public Date getClosingDate() {
+        return closingDate;
+    }
+
+    public void setClosingDate(Date closingDate) {
+        this.closingDate = closingDate;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<Tag> tags) {
+        this.tags = tags;
     }
 
     @Override
