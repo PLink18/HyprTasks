@@ -2,6 +2,7 @@ import org.junit.jupiter.api.Test;
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
 import pll.desktop.hyprtasks.models.Project;
 import pll.desktop.hyprtasks.models.Task;
+import pll.desktop.hyprtasks.models.User;
 import pll.desktop.hyprtasks.repositories.Repository;
 
 import java.sql.Connection;
@@ -22,15 +23,26 @@ public class RepositoryTest {
     }
 
     @Test
+    public void testTableNames() {
+        assertEquals("Tasks", Repository.tasks().tableName());
+        assertEquals("Projects", Repository.projects().tableName());
+        assertEquals("Users", Repository.users().tableName());
+
+        assertNotEquals(Repository.tasks().tableName(), Repository.projects().tableName());
+    }
+
+    @Test
     public void testFindByID() {
         assertEquals(2, Repository.tasks().findById(2).getId());
         assertEquals(2, Repository.projects().findById(2).getId());
+        assertEquals(2, Repository.users().findById(2).getId());
     }
 
     @Test
     public void testFindAllRecords() {
         assertNotNull(Repository.tasks().findAll());
         assertNotNull(Repository.projects().findAll());
+        assertNotNull(Repository.users().findAll());
     }
 
     @Test
@@ -42,6 +54,10 @@ public class RepositoryTest {
         Project project = new Project("LAST", "This is last project");
         Repository.projects().save(project);
         assertEquals(project.getTitle(), Repository.projects().findLast().getTitle());
+
+        User user = new User("LAST", "12345678", "lastuser@gmail.com");
+        Repository.users().save(user);
+        assertEquals(user.getUsername(), Repository.users().findLast().getUsername());
     }
 
     @Test
@@ -57,6 +73,12 @@ public class RepositoryTest {
         Repository.projects().save(project);
 
         assertNotEquals(oldLastProject, Repository.projects().findLast());
+
+        User oldLastUser = Repository.users().findLast();
+        User user = new User("newLastUser", "1111", "imnewlastuser@vot.ru");
+        Repository.users().save(user);
+
+        assertNotEquals(oldLastUser, Repository.users().findLast());
     }
 
     @Test
@@ -73,6 +95,12 @@ public class RepositoryTest {
         Repository.projects().update(project);
 
         assertEquals(project.toString(), Repository.projects().findLast().toString());
+
+        id = Repository.users().findLast().getId();
+        User user = new User(id, "updatedUser", "coolPassword", "imupdated@da.su");
+        Repository.users().update(user);
+
+        assertEquals(user.toString(), Repository.users().findLast().toString());
     }
 
     @Test
@@ -86,5 +114,9 @@ public class RepositoryTest {
         id = Repository.projects().findLast().getId();
         Repository.projects().delete(id);
         assertNotEquals(id, Repository.projects().findLast().getId());
+
+        id = Repository.users().findLast().getId();
+        Repository.users().delete(id);
+        assertNotEquals(id, Repository.users().findLast().getId());
     }
 }

@@ -11,15 +11,16 @@ import java.util.List;
 
 public abstract class Repository<T> implements CrudRepository<T>{
 
-    public String tableName() {
-        return null;
-    }
+    public abstract String tableName();
 
     public static TasksRepository tasks() {
         return new TasksRepository();
     }
     public static ProjectsRepository projects() {
         return new ProjectsRepository();
+    }
+    public static UsersRepository users() {
+        return new UsersRepository();
     }
 
     @Override
@@ -45,7 +46,7 @@ public abstract class Repository<T> implements CrudRepository<T>{
 
     @Override
     public List<T> findAll() {
-        String sql = "SELECT * FROM Tasks";
+        String sql = "SELECT * FROM " + tableName();
 
         List<T> entity = new ArrayList<>();
 
@@ -87,16 +88,6 @@ public abstract class Repository<T> implements CrudRepository<T>{
     }
 
     @Override
-    public void save(T entity) {
-
-    }
-
-    @Override
-    public void update(T entity) {
-
-    }
-
-    @Override
     public void delete(int id) {
         String sql = "DELETE FROM " + tableName() + " WHERE id=" + id;
 
@@ -111,7 +102,11 @@ public abstract class Repository<T> implements CrudRepository<T>{
     }
 
     @Override
-    public T mapRow(ResultSet resultSet) {
-        return null;
-    }
+    public abstract void save(T entity);
+
+    @Override
+    public abstract void update(T entity);
+
+    @Override
+    public abstract T mapRow(ResultSet resultSet);
 }

@@ -17,7 +17,7 @@ public class TasksRepository extends Repository<Task> {
 
     @Override
     public void save(Task entity) {
-        String sql = "INSERT INTO Tasks (title, description) VALUES (?, ?)";
+        String sql = "INSERT INTO " + tableName() + " (title, description) VALUES (?, ?)";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, entity.getTitle());
@@ -30,7 +30,7 @@ public class TasksRepository extends Repository<Task> {
 
     @Override
     public void update(Task entity) {
-        String sql = "UPDATE Tasks SET title = ?, description = ? WHERE id = ?";
+        String sql = "UPDATE " + tableName() + " SET title = ?, description = ? WHERE id = ?";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setString(1, entity.getTitle());

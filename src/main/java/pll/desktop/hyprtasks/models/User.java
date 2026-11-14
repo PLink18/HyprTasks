@@ -14,6 +14,12 @@ public class User implements Entity {
         this.email = email;
     }
 
+    public User(String username, String password, String email) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+    }
+
     public int getId() {
         return id;
     }
@@ -44,5 +50,13 @@ public class User implements Entity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    @Override
+    public String toString() {
+        return "User:" + id +
+                "\nUsername: " + username +
+                "\nPassword: " + password +
+                "\nEmail: " + email;
     }
 }
