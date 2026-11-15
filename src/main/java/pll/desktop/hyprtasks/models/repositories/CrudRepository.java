@@ -1,4 +1,4 @@
-package pll.desktop.hyprtasks.repositories;
+package pll.desktop.hyprtasks.models.repositories;
 
 import java.sql.ResultSet;
 import java.util.List;

@@ -1,7 +1,7 @@
-package pll.desktop.hyprtasks.repositories;
+package pll.desktop.hyprtasks.models.repositories;
 
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
-import pll.desktop.hyprtasks.models.Task;
+import pll.desktop.hyprtasks.models.entities.Task;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +17,7 @@ public class TasksRepository extends Repository<Task> {
 
     @Override
     public void save(Task entity) {
-        String sql = "INSERT INTO Tasks (title, description) VALUES (?, ?)";
+        String sql = "INSERT INTO " + tableName() + " (title, description) VALUES (?, ?)";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, entity.getTitle());
@@ -30,13 +30,13 @@ public class TasksRepository extends Repository<Task> {
 
     @Override
     public void update(Task entity) {
-        String sql = "UPDATE Tasks SET title = ?, description = ? WHERE id = ?";
+        String sql = "UPDATE " + tableName() + " SET title = ?, description = ? WHERE id = ?";
         try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-            statement.setString(1, entity.getTitle());
-            statement.setString(2, entity.getDescription());
-            statement.setInt(3, entity.getId());
-            statement.execute();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, entity.getTitle());
+            preparedStatement.setString(2, entity.getDescription());
+            preparedStatement.setInt(3, entity.getId());
+            preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }

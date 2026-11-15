@@ -1,10 +1,13 @@
-package pll.desktop.hyprtasks.models;
+package pll.desktop.hyprtasks.models.entities;
+
+import java.util.List;
 
 public class Project implements Entity {
 
     private int id;
     private String title;
     private String description;
+    private List<Task> tasks;
 
     public Project(int id, String title, String description) {
         this.id = id;
@@ -41,10 +44,21 @@ public class Project implements Entity {
         this.description = description;
     }
 
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
+
     @Override
     public String toString() {
-        return "Project:" + id +
-                "\nTitle: " + title +
-                "\nDescription: " + description;
+        return "Project{id=" + id + ", title=" + title + ", description=" + description + "}";
+    }
+
+    @Override
+    public String toStringWithoutId() {
+        return "Project{title=" + title + ", description=" + description + "}";
     }
 }

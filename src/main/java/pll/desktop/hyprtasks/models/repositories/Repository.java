@@ -1,6 +1,10 @@
-package pll.desktop.hyprtasks.repositories;
+package pll.desktop.hyprtasks.models.repositories;
 
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
+import pll.desktop.hyprtasks.models.repositories.lookup.PrioritiesRepository;
+import pll.desktop.hyprtasks.models.repositories.lookup.RolesRepository;
+import pll.desktop.hyprtasks.models.repositories.lookup.StatusesRepository;
+import pll.desktop.hyprtasks.models.repositories.lookup.TagsRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,27 +15,44 @@ import java.util.List;
 
 public abstract class Repository<T> implements CrudRepository<T>{
 
-    public String tableName() {
-        return null;
-    }
+    public abstract String tableName();
 
     public static TasksRepository tasks() {
         return new TasksRepository();
     }
-
     public static ProjectsRepository projects() {
         return new ProjectsRepository();
     }
+    public static UsersRepository users() {
+        return new UsersRepository();
+    }
+    public static PrioritiesRepository priorities() {
+        return new PrioritiesRepository();
+    }
+    public static RolesRepository roles() {
+        return new RolesRepository();
+    }
+    public static StatusesRepository statuses() {
+        return new StatusesRepository();
+    }
+    public static TagsRepository tags() {
+        return new TagsRepository();
+    }
+    public static NotesRepository notes() {
+        return new NotesRepository();
+    }
+    public static ProjectMembersRepository projectMembers() {
+        return new ProjectMembersRepository();
+    }
+
 
     @Override
     public T findById(int id) {
         String sql = "SELECT * FROM " + tableName() + " WHERE id=" + id;
 
         try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.execute();
-            ResultSet resultSet = statement.getResultSet();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
             if (resultSet.next()) {
                 return mapRow(resultSet);
@@ -46,15 +67,14 @@ public abstract class Repository<T> implements CrudRepository<T>{
 
     @Override
     public List<T> findAll() {
-        String sql = "SELECT * FROM Tasks";
+        String sql = "SELECT * FROM " + tableName();
 
         List<T> entity = new ArrayList<>();
 
         try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
-            statement.execute();
-            ResultSet resultSet = statement.getResultSet();
             while (resultSet.next()) {
                 entity.add(mapRow(resultSet));
             }
@@ -71,10 +91,8 @@ public abstract class Repository<T> implements CrudRepository<T>{
         String sql = "SELECT * FROM (SELECT a.*, max(id) OVER () AS max_id FROM " + tableName() + " a) WHERE id = max_id";
 
         try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.execute();
-            ResultSet resultSet = statement.getResultSet();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
             if (resultSet.next()) {
                 return mapRow(resultSet);
@@ -88,16 +106,6 @@ public abstract class Repository<T> implements CrudRepository<T>{
     }
 
     @Override
-    public void save(T entity) {
-
-    }
-
-    @Override
-    public void update(T entity) {
-
-    }
-
-    @Override
     public void delete(int id) {
         String sql = "DELETE FROM " + tableName() + " WHERE id=" + id;
 
@@ -105,14 +113,17 @@ public abstract class Repository<T> implements CrudRepository<T>{
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.execute();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
     @Override
-    public T mapRow(ResultSet resultSet) {
-        return null;
-    }
+    public abstract void save(T entity);
+
+    @Override
+    public abstract void update(T entity);
+
+    @Override
+    public abstract T mapRow(ResultSet resultSet);
 }

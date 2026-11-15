@@ -1,8 +1,8 @@
 package pll.desktop.hyprtasks.controllers;
 
 import javafx.scene.layout.VBox;
-import pll.desktop.hyprtasks.models.Task;
-import pll.desktop.hyprtasks.repositories.TasksRepository;
+import pll.desktop.hyprtasks.models.entities.Task;
+import pll.desktop.hyprtasks.models.repositories.TasksRepository;
 
 public class TasksController {
 

@@ -1,15 +1,19 @@
 package pll.desktop.hyprtasks.helpers;
 
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
 public class ConnectionHelper {
 
-    public static Connection getConnection() throws SQLException {
+    private static final HikariDataSource dataSource;
+
+    static {
         Properties properties = new Properties();
 
         try (InputStream in = ConnectionHelper.class.getClassLoader().getResourceAsStream("properties/db.properties")) {
@@ -18,9 +22,18 @@ public class ConnectionHelper {
             throw new RuntimeException(e);
         }
 
-        String url = properties.getProperty("db.url");
-        String user = properties.getProperty("db.user");
-        String password = properties.getProperty("db.password");
-        return DriverManager.getConnection(url, user, password);
+        HikariConfig config = new HikariConfig();
+        config.setJdbcUrl(properties.getProperty("db.url"));
+        config.setUsername(properties.getProperty("db.user"));
+        config.setPassword(properties.getProperty("db.password"));
+
+        config.setMaximumPoolSize(5);
+        config.setMinimumIdle(1);
+
+        dataSource = new HikariDataSource(config);
+    }
+
+    public static Connection getConnection() throws SQLException {
+        return dataSource.getConnection();
     }
 }

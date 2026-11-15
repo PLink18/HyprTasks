@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import pll.desktop.hyprtasks.models.Task;
+import pll.desktop.hyprtasks.models.entities.Task;
 
 import java.io.IOException;
 
@@ -33,7 +33,7 @@ public class TaskCardController extends VBox {
         title.setText(task.getTitle());
         description.setText(task.getDescription());
         priority.setText(String.valueOf(task.getPriority()));
-        deadline.setText(String.valueOf(task.getDeadline()));
+        deadline.setText(String.valueOf(task.getCreationDate()));
 
         title.setOnMouseClicked(onTitleClicked());
     }
