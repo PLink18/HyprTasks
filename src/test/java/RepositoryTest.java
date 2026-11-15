@@ -109,6 +109,7 @@ public class RepositoryTest {
     @MethodSource("provideEntitiesAndRepositories")
     public void testDeleteById(Entity entity, Repository<Entity> repository) {
         int id = repository.findLast().getId();
+        assertNotNull(repository.findById(id));
         repository.delete(id);
         assertNull(repository.findById(id));
     }
