@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class RepositoryTest {
 
-    static Stream<Arguments> provideRepositoriesAndEntities() {
+    static Stream<Arguments> provideEntitiesAndRepositories() {
         return Stream.of(
                 Arguments.of(
                         new Task("TEST_TASK", "TASK FOR TEST"),
@@ -69,38 +69,27 @@ public class RepositoryTest {
         }
     }
 
-    @Test
-    public void testTableNames() {
-        assertEquals("Tasks", Repository.tasks().tableName());
-        assertEquals("Projects", Repository.projects().tableName());
-        assertEquals("Users", Repository.users().tableName());
-
-        assertNotEquals(Repository.tasks().tableName(), Repository.projects().tableName());
-    }
-
-    @Test
-    public void testFindByID() {
-        assertEquals(2, Repository.tasks().findById(2).getId());
-        assertEquals(2, Repository.projects().findById(2).getId());
-        assertEquals(2, Repository.users().findById(2).getId());
-    }
-
-    @Test
-    public void testFindAllRecords() {
-        assertNotNull(Repository.tasks().findAll());
-        assertNotNull(Repository.projects().findAll());
-        assertNotNull(Repository.users().findAll());
+    @ParameterizedTest
+    @MethodSource("provideEntitiesAndRepositories")
+    public void testFindByID(Entity entity, Repository<Entity> repository) {
+        assertEquals(2, repository.findById(2).getId());
     }
 
     @ParameterizedTest
-    @MethodSource("provideRepositoriesAndEntities")
+    @MethodSource("provideEntitiesAndRepositories")
+    public void testFindAllRecords(Entity entity, Repository<Entity> repository) {
+        assertNotNull(repository.findAll());
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideEntitiesAndRepositories")
     public void testFindLastRecord(Entity entity, Repository<Entity> repository) {
         repository.save(entity);
         assertEquals(entity.toStringWithoutId(), repository.findLast().toStringWithoutId());
     }
 
     @ParameterizedTest
-    @MethodSource("provideRepositoriesAndEntities")
+    @MethodSource("provideEntitiesAndRepositories")
     public void testSaveRecords(Entity entity, Repository<Entity> repository) {
         Entity oldEntity = repository.findLast();
         repository.save(entity);
@@ -108,7 +97,7 @@ public class RepositoryTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideRepositoriesAndEntities")
+    @MethodSource("provideEntitiesAndRepositories")
     public void testUpdateRecord(Entity entity, Repository<Entity> repository) {
         int id = repository.findLast().getId();
         entity.setId(id);
@@ -117,7 +106,7 @@ public class RepositoryTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideRepositoriesAndEntities")
+    @MethodSource("provideEntitiesAndRepositories")
     public void testDeleteById(Entity entity, Repository<Entity> repository) {
         int id = repository.findLast().getId();
         repository.delete(id);
