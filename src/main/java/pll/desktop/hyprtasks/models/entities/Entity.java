@@ -1,4 +1,4 @@
-package pll.desktop.hyprtasks.models;
+package pll.desktop.hyprtasks.models.entities;
 
 public interface Entity {
     int getId();

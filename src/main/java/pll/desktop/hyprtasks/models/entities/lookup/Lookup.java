@@ -1,18 +1,18 @@
-package pll.desktop.hyprtasks.models.references;
+package pll.desktop.hyprtasks.models.entities.lookup;
 
-import pll.desktop.hyprtasks.models.Entity;
+import pll.desktop.hyprtasks.models.entities.Entity;
 
-public abstract class Reference implements Entity {
+public abstract class Lookup implements Entity {
 
     protected int id;
     protected String name;
 
-    public Reference(int id, String name) {
+    public Lookup(int id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public Reference(String name) {
+    public Lookup(String name) {
         this.name = name;
     }
 

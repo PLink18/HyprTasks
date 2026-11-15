@@ -1,26 +1,27 @@
-package pll.desktop.hyprtasks.repositories;
+package pll.desktop.hyprtasks.models.repositories;
 
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
-import pll.desktop.hyprtasks.models.Note;
+import pll.desktop.hyprtasks.models.entities.Task;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class NotesRepository extends Repository<Note> {
+public class TasksRepository extends Repository<Task> {
+
     @Override
     public String tableName() {
-        return "Notes";
+        return "Tasks";
     }
 
     @Override
-    public void save(Note entity) {
-        String sql = "INSERT INTO " + tableName() + " (title, content) VALUES (?, ?)";
+    public void save(Task entity) {
+        String sql = "INSERT INTO " + tableName() + " (title, description) VALUES (?, ?)";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, entity.getTitle());
-            preparedStatement.setString(2, entity.getContent());
+            preparedStatement.setString(2, entity.getDescription());
             preparedStatement.execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -28,12 +29,12 @@ public class NotesRepository extends Repository<Note> {
     }
 
     @Override
-    public void update(Note entity) {
-        String sql = "UPDATE " + tableName() + " SET title = ?, content = ? WHERE id = ?";
+    public void update(Task entity) {
+        String sql = "UPDATE " + tableName() + " SET title = ?, description = ? WHERE id = ?";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, entity.getTitle());
-            preparedStatement.setString(2, entity.getContent());
+            preparedStatement.setString(2, entity.getDescription());
             preparedStatement.setInt(3, entity.getId());
             preparedStatement.execute();
         } catch (SQLException e) {
@@ -42,12 +43,12 @@ public class NotesRepository extends Repository<Note> {
     }
 
     @Override
-    public Note mapRow(ResultSet resultSet) {
+    public Task mapRow(ResultSet resultSet) {
         try {
-            return new Note(
+            return new Task(
                     resultSet.getInt("id"),
                     resultSet.getString("title"),
-                    resultSet.getString("content")
+                    resultSet.getString("description")
             );
         } catch (SQLException e) {
             throw new RuntimeException(e);

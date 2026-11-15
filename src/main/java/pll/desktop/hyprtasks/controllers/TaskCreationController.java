@@ -4,8 +4,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.layout.VBox;
-import pll.desktop.hyprtasks.models.Task;
-import pll.desktop.hyprtasks.repositories.Repository;
+import pll.desktop.hyprtasks.models.entities.Task;
+import pll.desktop.hyprtasks.models.repositories.Repository;
 
 public class TaskCreationController {
 

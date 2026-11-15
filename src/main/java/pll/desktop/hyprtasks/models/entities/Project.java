@@ -1,4 +1,4 @@
-package pll.desktop.hyprtasks.models;
+package pll.desktop.hyprtasks.models.entities;
 
 import java.util.List;
 

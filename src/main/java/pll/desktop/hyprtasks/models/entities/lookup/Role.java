@@ -1,6 +1,6 @@
-package pll.desktop.hyprtasks.models.references;
+package pll.desktop.hyprtasks.models.entities.lookup;
 
-public class Role extends Reference {
+public class Role extends Lookup {
 
     public Role(int id, String name) {
         super(id, name);

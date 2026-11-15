@@ -1,22 +1,22 @@
-package pll.desktop.hyprtasks.repositories;
+package pll.desktop.hyprtasks.models.repositories;
 
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
-import pll.desktop.hyprtasks.models.Task;
+import pll.desktop.hyprtasks.models.entities.Project;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TasksRepository extends Repository<Task> {
+public class ProjectsRepository extends Repository<Project> {
 
     @Override
     public String tableName() {
-        return "Tasks";
+        return "Projects";
     }
 
     @Override
-    public void save(Task entity) {
+    public void save(Project entity) {
         String sql = "INSERT INTO " + tableName() + " (title, description) VALUES (?, ?)";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -29,7 +29,7 @@ public class TasksRepository extends Repository<Task> {
     }
 
     @Override
-    public void update(Task entity) {
+    public void update(Project entity) {
         String sql = "UPDATE " + tableName() + " SET title = ?, description = ? WHERE id = ?";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -43,9 +43,9 @@ public class TasksRepository extends Repository<Task> {
     }
 
     @Override
-    public Task mapRow(ResultSet resultSet) {
+    public Project mapRow(ResultSet resultSet) {
         try {
-            return new Task(
+            return new Project(
                     resultSet.getInt("id"),
                     resultSet.getString("title"),
                     resultSet.getString("description")

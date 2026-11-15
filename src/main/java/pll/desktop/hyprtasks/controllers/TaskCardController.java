@@ -6,7 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-import pll.desktop.hyprtasks.models.Task;
+import pll.desktop.hyprtasks.models.entities.Task;
 
 import java.io.IOException;
 

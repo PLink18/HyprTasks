@@ -1,10 +1,10 @@
-package pll.desktop.hyprtasks.repositories;
+package pll.desktop.hyprtasks.models.repositories;
 
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
-import pll.desktop.hyprtasks.repositories.references.PrioritiesRepository;
-import pll.desktop.hyprtasks.repositories.references.RolesRepository;
-import pll.desktop.hyprtasks.repositories.references.StatusesRepository;
-import pll.desktop.hyprtasks.repositories.references.TagsRepository;
+import pll.desktop.hyprtasks.models.repositories.lookup.PrioritiesRepository;
+import pll.desktop.hyprtasks.models.repositories.lookup.RolesRepository;
+import pll.desktop.hyprtasks.models.repositories.lookup.StatusesRepository;
+import pll.desktop.hyprtasks.models.repositories.lookup.TagsRepository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

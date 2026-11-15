@@ -1,19 +1,19 @@
-package pll.desktop.hyprtasks.repositories.references;
+package pll.desktop.hyprtasks.models.repositories.lookup;
 
-import pll.desktop.hyprtasks.models.references.Priority;
-import pll.desktop.hyprtasks.models.references.Reference;
+import pll.desktop.hyprtasks.models.entities.lookup.Priority;
+import pll.desktop.hyprtasks.models.entities.lookup.Lookup;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PrioritiesRepository extends ReferenceRepository {
+public class PrioritiesRepository extends LookupRepository {
     @Override
     public String tableName() {
         return "Priorities";
     }
 
     @Override
-    public Reference mapRow(ResultSet resultSet) {
+    public Lookup mapRow(ResultSet resultSet) {
         try {
             return new Priority(
                     resultSet.getInt("id"),

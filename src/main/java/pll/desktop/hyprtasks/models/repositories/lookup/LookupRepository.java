@@ -1,22 +1,22 @@
-package pll.desktop.hyprtasks.repositories.references;
+package pll.desktop.hyprtasks.models.repositories.lookup;
 
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
-import pll.desktop.hyprtasks.models.references.Reference;
-import pll.desktop.hyprtasks.repositories.Repository;
+import pll.desktop.hyprtasks.models.entities.lookup.Lookup;
+import pll.desktop.hyprtasks.models.repositories.Repository;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class ReferenceRepository extends Repository<Reference> {
+public abstract class LookupRepository extends Repository<Lookup> {
     @Override
     public String tableName() {
         return "Reference";
     }
 
     @Override
-    public void save(Reference entity) {
+    public void save(Lookup entity) {
         String sql = "INSERT INTO " + tableName() + " (name) VALUES (?)";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -28,7 +28,7 @@ public class ReferenceRepository extends Repository<Reference> {
     }
 
     @Override
-    public void update(Reference entity) {
+    public void update(Lookup entity) {
         String sql = "UPDATE " + tableName() + " SET name = ? WHERE id = ?";
         try (Connection connection = ConnectionHelper.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -41,7 +41,7 @@ public class ReferenceRepository extends Repository<Reference> {
     }
 
     @Override
-    public Reference mapRow(ResultSet resultSet) {
+    public Lookup mapRow(ResultSet resultSet) {
         return null;
     }
 }

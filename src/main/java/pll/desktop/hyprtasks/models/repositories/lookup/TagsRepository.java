@@ -1,21 +1,21 @@
-package pll.desktop.hyprtasks.repositories.references;
+package pll.desktop.hyprtasks.models.repositories.lookup;
 
-import pll.desktop.hyprtasks.models.references.Reference;
-import pll.desktop.hyprtasks.models.references.Role;
+import pll.desktop.hyprtasks.models.entities.lookup.Lookup;
+import pll.desktop.hyprtasks.models.entities.lookup.Tag;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class RolesRepository extends ReferenceRepository {
+public class TagsRepository extends LookupRepository {
     @Override
     public String tableName() {
-        return "Roles";
+        return "Tags";
     }
 
     @Override
-    public Reference mapRow(ResultSet resultSet) {
+    public Lookup mapRow(ResultSet resultSet) {
         try {
-            return new Role(
+            return new Tag(
                     resultSet.getInt("id"),
                     resultSet.getString("name")
             );

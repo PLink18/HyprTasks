@@ -1,7 +1,7 @@
-package pll.desktop.hyprtasks.repositories;
+package pll.desktop.hyprtasks.models.repositories;
 
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
-import pll.desktop.hyprtasks.models.User;
+import pll.desktop.hyprtasks.models.entities.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

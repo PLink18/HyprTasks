@@ -1,6 +1,6 @@
-package pll.desktop.hyprtasks.models.references;
+package pll.desktop.hyprtasks.models.entities.lookup;
 
-public class Status extends Reference {
+public class Status extends Lookup {
 
     public Status(int id, String name) {
         super(id, name);

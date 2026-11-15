@@ -3,12 +3,12 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import pll.desktop.hyprtasks.helpers.ConnectionHelper;
-import pll.desktop.hyprtasks.models.*;
-import pll.desktop.hyprtasks.models.references.Priority;
-import pll.desktop.hyprtasks.models.references.Role;
-import pll.desktop.hyprtasks.models.references.Status;
-import pll.desktop.hyprtasks.models.references.Tag;
-import pll.desktop.hyprtasks.repositories.Repository;
+import pll.desktop.hyprtasks.models.entities.*;
+import pll.desktop.hyprtasks.models.entities.lookup.Priority;
+import pll.desktop.hyprtasks.models.entities.lookup.Role;
+import pll.desktop.hyprtasks.models.entities.lookup.Status;
+import pll.desktop.hyprtasks.models.entities.lookup.Tag;
+import pll.desktop.hyprtasks.models.repositories.Repository;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class RepositoryTest {
+public class DatabaseTest {
 
     static Stream<Arguments> provideEntitiesAndRepositories() {
         return Stream.of(

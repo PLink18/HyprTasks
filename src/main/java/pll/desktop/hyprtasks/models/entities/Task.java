@@ -1,6 +1,6 @@
-package pll.desktop.hyprtasks.models;
+package pll.desktop.hyprtasks.models.entities;
 
-import pll.desktop.hyprtasks.models.references.Tag;
+import pll.desktop.hyprtasks.models.entities.lookup.Tag;
 
 import java.util.Date;
 import java.util.List;

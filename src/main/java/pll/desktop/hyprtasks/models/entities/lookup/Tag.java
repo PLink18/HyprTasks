@@ -1,6 +1,6 @@
-package pll.desktop.hyprtasks.models.references;
+package pll.desktop.hyprtasks.models.entities.lookup;
 
-public class Tag extends Reference {
+public class Tag extends Lookup {
 
     public Tag(int id, String name) {
         super(id, name);
