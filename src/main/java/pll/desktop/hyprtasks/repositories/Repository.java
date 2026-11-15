@@ -51,10 +51,8 @@ public abstract class Repository<T> implements CrudRepository<T>{
         String sql = "SELECT * FROM " + tableName() + " WHERE id=" + id;
 
         try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.execute();
-            ResultSet resultSet = statement.getResultSet();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
             if (resultSet.next()) {
                 return mapRow(resultSet);
@@ -74,10 +72,9 @@ public abstract class Repository<T> implements CrudRepository<T>{
         List<T> entity = new ArrayList<>();
 
         try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
-            statement.execute();
-            ResultSet resultSet = statement.getResultSet();
             while (resultSet.next()) {
                 entity.add(mapRow(resultSet));
             }
@@ -94,10 +91,8 @@ public abstract class Repository<T> implements CrudRepository<T>{
         String sql = "SELECT * FROM (SELECT a.*, max(id) OVER () AS max_id FROM " + tableName() + " a) WHERE id = max_id";
 
         try (Connection connection = ConnectionHelper.getConnection();
-             PreparedStatement statement = connection.prepareStatement(sql)) {
-
-            statement.execute();
-            ResultSet resultSet = statement.getResultSet();
+             PreparedStatement statement = connection.prepareStatement(sql);
+             ResultSet resultSet = statement.executeQuery()) {
 
             if (resultSet.next()) {
                 return mapRow(resultSet);
@@ -118,7 +113,6 @@ public abstract class Repository<T> implements CrudRepository<T>{
              PreparedStatement statement = connection.prepareStatement(sql)) {
 
             statement.execute();
-
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
